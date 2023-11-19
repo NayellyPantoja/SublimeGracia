@@ -1,0 +1,52 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.containerLogo{
+    width: 30rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .logoImagen{
+        width: 18%;
+        @include m.telefono{
+            width: 16%
+        }
+    };
+    .logoLetras{
+        width: 40%;
+    };
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.containerMenu{
+    width: 15%;
+    @include m.tablet{
+        width: 30%;
+        gap: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    };
+    .itemMenu{
+        color: v.$blanco;
+        text-align: center;
+        &:hover{
+            color: v.$secundario;
+            cursor: pointer;
+        };
+        &.activeLink{
+            color: v.$secundario;
+            font-weight: bold;
+            &::after{
+                content: '';
+                display: block;
+                height: .2rem;
+                width: 100%;
+                background-color: v.$secundario;
+            }
+        }
+    };
+    
+}
