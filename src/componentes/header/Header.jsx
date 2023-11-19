@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import logoImagen from "../../assets/imgWebp/Logo/LogoImagen.webp";
-import logoLetras from "../../assets/imgWebp/Logo/LogoLetras.webp";
+import logoImagen from "../../assets/imgWebp/Logo/logoImagen.webp";
+import logoLetras from "../../assets/imgWebp/Logo/logoLetras.webp";
 import "../../styles/App.css";
 import {routes} from "../../router/routes"
 import { useEffect, useState } from "react";
