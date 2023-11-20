@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 10rem;
+    height: 6rem;
     width: 100%;
     padding: 0 2rem;
     background-color: transparent;
@@ -16,6 +16,7 @@
 
     @include m.tablet{
         padding: 1rem 7rem;
+        height: 8rem;
     }
     &.scrolled{
         background-color: v.$secundario;

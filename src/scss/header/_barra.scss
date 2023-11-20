@@ -2,18 +2,25 @@
 @use "base/mixins" as m;
 
 .containerLogo{
-    width: 30rem;
-    height: 100%;
+    width: 15rem;
+    padding: .3rem 0;
     display: flex;
     align-items: center;
+    @include m.tablet{
+        width: 30rem;
+    }
     .logoImagen{
-        width: 18%;
+        width: 2.5rem;
         @include m.telefono{
-            width: 16%
+            width: 12.5%
         }
     };
     .logoLetras{
-        width: 40%;
+        display: none;
+        @include m.telefono{
+            display: inline;
+            width: 35%;
+        }
     };
     &:hover{
         cursor: pointer;
@@ -21,24 +28,47 @@
 }
 
 .containerMenu{
-    width: 15%;
-    @include m.tablet{
-        width: 30%;
-        gap: 2rem;
-        display: flex;
-        justify-content: space-between;
+    width: 5rem;
+    display: flex;
+    justify-content: right;
+    @include m.telefono{
+        width: 60%;
+        gap: 4rem;
         align-items: center;
     };
-    .itemMenu{
+
+    .svg-inline--fa{
         color: v.$blanco;
-        text-align: center;
+        width: 2.6rem;
+        height: 2.6rem;
         &:hover{
             color: v.$secundario;
             cursor: pointer;
-        };
+            
+        }
+    }
+    &.sidebarOpen{
+        background-color: v.$secundario;
+        width: 65%;
+        margin-right: -2rem;
+        height: 100vh;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        transition: margin-left 0.5s ease;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10rem 0 40rem 0;
+        z-index: 100;
+    }
+
+    .itemMenu{
+        color: v.$blanco;
+        font-size: 1.5rem;
+        text-align: center;
+        
         &.activeLink{
-            color: v.$secundario;
-            font-weight: bold;
             &::after{
                 content: '';
                 display: block;
@@ -47,6 +77,32 @@
                 background-color: v.$secundario;
             }
         }
-    };
+        
+        &.sidebarOpen{
+            height: 50%;
+            display: flex;
+            align-items: center;
+      }
+      
+        &:hover,
+        &.activeLink,
+        &:hover .iconMenu,
+        &.activeLink .iconMenu {
+                color: v.$verdeOscuro;
+        }
+    }
+        .iconMenu{
+            width: 1.5rem;
+            height: 1.5rem;
+            
+        }
+        &:hover,
+        &.activeLink,
+        &:hover .iconMenu,
+        &.activeLink .iconMenu {
+            color: v.$secundario;
+  }
+  
+};
     
-}
+
