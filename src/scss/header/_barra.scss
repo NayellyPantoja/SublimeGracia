@@ -50,17 +50,17 @@
     &.sidebarOpen{
         background-color: v.$secundario;
         width: 65%;
-        margin-right: -2rem;
-        height: 100vh;
+        height: 50vh;
         position: fixed;
         right: 0;
-        bottom: 0;
-        transition: margin-left 0.5s ease;
+        top: 0;
         flex-direction: column;
         justify-content: center;
+        transition: all .3s ease;
         align-items: center;
-        padding: 10rem 0 40rem 0;
+        padding: 1rem;
         z-index: 100;
+        border-bottom-left-radius: 1rem;
     }
 
     .itemMenu{
@@ -77,31 +77,35 @@
                 background-color: v.$secundario;
             }
         }
-        
-        &.sidebarOpen{
-            height: 50%;
-            display: flex;
-            align-items: center;
-      }
-      
-        &:hover,
-        &.activeLink,
-        &:hover .iconMenu,
-        &.activeLink .iconMenu {
-                color: v.$verdeOscuro;
-        }
-    }
-        .iconMenu{
-            width: 1.5rem;
-            height: 1.5rem;
-            
-        }
         &:hover,
         &.activeLink,
         &:hover .iconMenu,
         &.activeLink .iconMenu {
             color: v.$secundario;
-  }
+        }
+        
+        &.sidebarOpen{
+            height: 15%;
+            display: flex;
+            align-items: center;
+      
+      
+            &:hover,
+            &.activeLink,
+            &:hover .iconMenu,
+            &.activeLink .iconMenu {
+                    color: v.$verdeOscuro;
+            }
+    }
+
+    .iconMenu{
+        width: 1.5rem;
+        height: 1.5rem;
+        
+    }
+    
+    }
+        
   
 };
     

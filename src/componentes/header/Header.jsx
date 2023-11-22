@@ -60,8 +60,12 @@ const Header = () => {
       </div>
 
       <div className={`containerMenu ${sidebar ? "sidebarOpen" : ""}` }>
-        {pantalla || sidebar ? (
+        {pantalla || sidebar? (
           <>
+          {sidebar && (
+            <BotonNavbar sidebar={sidebar} setSidebar={setSidebar}/>
+          )}
+          
             {routes.map((ruta) => (
               <Link
                 className={`itemMenu ${

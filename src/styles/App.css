@@ -393,17 +393,17 @@ a {
 .containerMenu.sidebarOpen {
   background-color: #C4DC94;
   width: 65%;
-  margin-right: -2rem;
-  height: 100vh;
+  height: 50vh;
   position: fixed;
   right: 0;
-  bottom: 0;
-  transition: margin-left 0.5s ease;
+  top: 0;
   flex-direction: column;
   justify-content: center;
+  transition: all 0.3s ease;
   align-items: center;
-  padding: 10rem 0 40rem 0;
+  padding: 1rem;
   z-index: 100;
+  border-bottom-left-radius: 1rem;
 }
 .containerMenu .itemMenu {
   color: #fff;
@@ -417,20 +417,20 @@ a {
   width: 100%;
   background-color: #C4DC94;
 }
+.containerMenu .itemMenu:hover, .containerMenu .itemMenu.activeLink, .containerMenu .itemMenu:hover .iconMenu, .containerMenu .itemMenu.activeLink .iconMenu {
+  color: #C4DC94;
+}
 .containerMenu .itemMenu.sidebarOpen {
-  height: 50%;
+  height: 15%;
   display: flex;
   align-items: center;
 }
-.containerMenu .itemMenu:hover, .containerMenu .itemMenu.activeLink, .containerMenu .itemMenu:hover .iconMenu, .containerMenu .itemMenu.activeLink .iconMenu {
+.containerMenu .itemMenu.sidebarOpen:hover, .containerMenu .itemMenu.sidebarOpen.activeLink, .containerMenu .itemMenu.sidebarOpen:hover .iconMenu, .containerMenu .itemMenu.sidebarOpen.activeLink .iconMenu {
   color: #04441C;
 }
-.containerMenu .iconMenu {
+.containerMenu .itemMenu .iconMenu {
   width: 1.5rem;
   height: 1.5rem;
-}
-.containerMenu:hover, .containerMenu.activeLink, .containerMenu:hover .iconMenu, .containerMenu.activeLink .iconMenu {
-  color: #C4DC94;
 }
 
 .containerHeader {
@@ -524,6 +524,14 @@ a {
 .nav-icon-5.open span:nth-child(3) {
   transform: rotate(-45deg);
   top: 13px;
+}
+
+.nav-icon-5.open {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 2rem;
+  margin-top: 2rem;
 }
 
 .itemMenu.navbarTelefono {
