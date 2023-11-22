@@ -6,6 +6,11 @@
 
 .containerBienvenida{
     .containerImgBgHome{
+        position: relative;
+        height: 80vh;
+        @include m.telefono{
+            height: 100vh;
+        }
         .backgroundHome{
             object-position: center;
             object-fit: cover;
@@ -16,13 +21,14 @@
                 height: 100vh;
             }
         }
+
         &::before{
             content: "";
             position: absolute;
             top: 0;
             right: 0;
-            bottom: 20vh;
             left: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.7);
             @include m.telefono{
                 bottom: 0;

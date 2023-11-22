@@ -23,3 +23,11 @@ export const routes = [
     icon: faVideo  
 }
 ];
+
+export const routesAdmin = [
+  {
+    id:1,
+    path: "/login",  
+    text: "Login"
+  }
+]

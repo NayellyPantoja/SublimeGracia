@@ -425,6 +425,9 @@ a {
   display: flex;
   align-items: center;
 }
+.containerMenu .itemMenu.sidebarOpen::after {
+  content: none;
+}
 .containerMenu .itemMenu.sidebarOpen:hover, .containerMenu .itemMenu.sidebarOpen.activeLink, .containerMenu .itemMenu.sidebarOpen:hover .iconMenu, .containerMenu .itemMenu.sidebarOpen.activeLink .iconMenu {
   color: #04441C;
 }
@@ -539,6 +542,15 @@ a {
   flex-direction: column;
 }
 
+.containerBienvenida .containerImgBgHome {
+  position: relative;
+  height: 80vh;
+}
+@media (min-width: 480px) {
+  .containerBienvenida .containerImgBgHome {
+    height: 100vh;
+  }
+}
 .containerBienvenida .containerImgBgHome .backgroundHome {
   object-position: center;
   object-fit: cover;
@@ -556,8 +568,8 @@ a {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 20vh;
   left: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.7);
 }
 @media (min-width: 480px) {
