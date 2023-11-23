@@ -21,6 +21,12 @@ export const routes = [
     path: "/sermones", 
     text: "Sermones",
     icon: faVideo  
+},
+{
+  id:1,
+  path: "/login",  
+  text: "Login",
+  icon: faPersonPraying,
 }
 ];
 
