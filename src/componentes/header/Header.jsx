@@ -75,7 +75,7 @@ const Header = () => {
                 key={ruta.id}
               >
                 <FontAwesomeIcon icon={ruta.icon} className={`iconMenu ${sidebar ? "sidebarOpen" : ""}` }/>
-                <span>{ruta.text}</span>
+                <span> {ruta.text}</span>
               </Link>
             ))}
           </>

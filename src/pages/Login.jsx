@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/App.css";
 import {
   FormControl,
@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import imgLogin from "../assets/Imagenes/Login/loginbg.png";
+import { login } from "../firebaseConfig";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,9 +20,35 @@ const Login = () => {
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setUser((prevUser) => ({ ...user, [e.target.name]: e.target.value }));
+  };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await login(user);
+      console.log(res)
+      res && navigate("/")
+    } catch (error) {
+      console.log(error)
+      navigate("/login")
+    }
+    
+  }
+
   return (
     <div className="containerForm">
-      <form className="cardContainer">
+      <form className="cardContainer" onSubmit={handleSubmit}>
         <img className="loginImage " src={imgLogin} />
         <div className="formulario">
           <div className="textLogin">
@@ -29,7 +56,12 @@ const Login = () => {
           </div>
 
           <Grid item xs={10} md={12} paddingBottom={"2rem"}>
-            <TextField name="email" label="Email" fullWidth />
+            <TextField
+              name="email"
+              label="Email"
+              fullWidth
+              onChange={handleChange}
+            />
           </Grid>
           <Grid item xs={10} md={12} paddingBottom={"2rem"}>
             <FormControl variant="outlined" fullWidth>
@@ -38,6 +70,7 @@ const Login = () => {
               </InputLabel>
               <OutlinedInput
                 name="password"
+                onChange={handleChange}
                 id="outlined-adornment-password"
                 type={showPassword ? "text" : "password"}
                 endAdornment={
@@ -60,12 +93,10 @@ const Login = () => {
             </FormControl>
           </Grid>
           <div className="forgetPassword">
-          <Link>¿Olvidaste tu contraseña?</Link>
+            <Link>¿Olvidaste tu contraseña?</Link>
           </div>
-          
-          
+
           <div className="containerBoton">
-          
             <button className="loginBoton">INICIAR SESIÓN</button>
             <Link className="registro">Crear cuenta nueva</Link>
           </div>
