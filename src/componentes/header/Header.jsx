@@ -3,11 +3,15 @@ import logoImagen from "../../assets/imgWebp/Logo/logoImagen.webp";
 import logoLetras from "../../assets/imgWebp/Logo/logoLetras.webp";
 import "../../styles/App.css";
 import { routes } from "../../router/routes";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BotonNavbar from "./BotonNavbar";
+import { logout } from "../../firebaseConfig";
+import { AuthContext } from "../../context/AuthContex";
+
 
 const Header = () => {
+  const {logoutContext} = useContext(AuthContext)
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [pantalla, setPantalla] = useState(false);
@@ -41,6 +45,11 @@ const Header = () => {
       window.removeEventListener("resize", manejarAnchoDePantalla);
     };
   }, [pantalla]);
+  
+  const handleLogout = () =>{
+    logoutContext()
+    logout()
+  }
 
   return (
     <div className={`containerHeader ${scrolled ? "scrolled" : ""} `}>
@@ -67,16 +76,19 @@ const Header = () => {
           )}
           
             {routes.map((ruta) => (
+              
               <Link
                 className={`itemMenu ${
                   location.pathname === ruta.path ? "activeLink" : ""
-                } ${sidebar ? "sidebarOpen" : ""}`}
+                } ${sidebar ? "sidebarOpen" : ""}`} 
                 to={ruta.path}
                 key={ruta.id}
+                onClick={ruta.text === "Cerrar sesión" ? () => {handleLogout} : null}
               >
                 <FontAwesomeIcon icon={ruta.icon} className={`iconMenu ${sidebar ? "sidebarOpen" : ""}` }/>
                 <span> {ruta.text}</span>
               </Link>
+              
             ))}
           </>
         ) : (

@@ -34,6 +34,12 @@
                 bottom: 0;
             }
         }
+
+        &.solas{
+            &::before{
+                background: rgba(0, 0, 0, 0.5);
+            }
+        }
     }
     .containerTextoBienvenida{
         position: absolute;
@@ -46,6 +52,24 @@
         @include m.tablet{
             max-width: 50%;
             padding-left: 7rem;
+        }
+        &.solas{
+            top: 50%;
+            padding: 2rem;
+            margin-left: 2rem;
+            border-radius: 1rem;
+            background-color: rgba($color: v.$primario, $alpha: 0.7);
+            @include m.telefono{
+                top: 75%;
+            }
+            @include m.tablet{
+                max-width: 75%;
+                margin-left: 7rem;
+            }
+            @include m.desktop{
+                max-width: 65%;
+            }
+            
         }
         
         .tituloBienvenida{
@@ -62,6 +86,7 @@
             }
         };
         .textoBienvenida{
+            position: relative;
             color: v.$blanco;
             font-size: 1.3rem;
             font-weight: lighter;
@@ -70,6 +95,24 @@
             text-align: left;
             @include m.tablet{
                 font-size: 2.5rem;
+            }
+
+            &.solas{
+                margin: 0;
+                @include m.telefono{
+                    font-size: 2rem;
+                }
+                @include m.tablet{
+                    font-size: 2.5rem;
+                }
+                .encabezado{
+                    position:absolute;
+                    right: 0;
+                    &:hover{
+                        color: v.$verdeBiche;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ const Bienvenida = () => {
         <h1 className="tituloBienvenida">
           ¡Bienvenidos a <span>Sublime Gracia!</span>
         </h1>
-        <p className="textoBienvenida">
+        <p className="textoBienvenida solas">
           Más que una iglesia, somos una familia.
         </p>
       </div>

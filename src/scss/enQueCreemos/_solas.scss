@@ -1,0 +1,92 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.sectionSolas{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5rem 2rem ;
+    background-color: v.$backgroundSection;
+    @include m.telefono{
+        flex-direction: row;
+    }
+    @include m.tablet{
+        padding: 7rem
+    }
+
+    .cardSolas{
+        position: relative;
+        width: 24rem;
+        height: 31rem;
+        border: 1rem solid v.$blanco;
+        padding: 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+
+        .titleSolas{
+            color: v.$blanco;
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-top: 2.8rem;
+            padding-bottom: 1rem;
+        }
+    
+        .textSolas{
+            color: v.$blanco;
+            font-weight: lighter;
+            font-size: 1.4rem;
+        }
+
+        .iconContainer{
+            width: 5rem;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            right: 0;
+            margin-right: 2rem;
+
+            .botonDelete{
+                color: v.$blanco;
+                height: 2.2rem;
+                &:hover{
+                    color: v.$backgroundSection;
+                    cursor: pointer;
+                }
+            }
+            .botonEdit{
+                color: v.$blanco;
+                height: 2.2rem;
+                &:hover{
+                    color: v.$backgroundSection;
+                    cursor: pointer;
+                }
+                
+            }
+        }
+
+        
+    }
+
+    .cardSolas:nth-child(1){
+        background-color: v.$cardSola1;
+    }
+
+    .buttonAdd{
+        color: v.$blanco;
+        height: 2.5rem;
+        background: linear-gradient(to right, v.$primario, #c7e58f);
+        padding: 1.5rem;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        &:hover{
+            background: linear-gradient(to right, #455d27,
+             #97b462);
+             cursor: pointer;
+        }
+    }
+
+    
+}
+

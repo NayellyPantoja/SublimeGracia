@@ -24,12 +24,12 @@ export const routes = [
     text: "Sermones",
     icon: faVideo  
 },
-{
-  id:4,
-  path: "/login",  
-  text: "Login",
-  icon: faRightToBracket,
-},
+// {
+//   id:4,
+//   path: "/login",  
+//   text: "Login",
+//   icon: faRightToBracket,
+// },
 {
   id: 5,
   path: "/login",  
@@ -37,6 +37,13 @@ export const routes = [
   icon: faArrowRightFromBracket,
 }
 ];
+
+export const register = [
+  {
+    id:1,
+    path: "/registro"
+  }
+]
 
 export const routesAdmin = [
   {

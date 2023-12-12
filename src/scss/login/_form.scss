@@ -24,6 +24,12 @@
     @include m.telefono{
         width: 68%;
     }
+
+    &.register{
+        @include m.tablet{
+            width: 50%;
+        }
+    }
     
 
     .loginImage {
@@ -46,11 +52,15 @@
         flex-direction: column;
         
         @include m.tablet{
-        
         width: 50%;
         padding: 2rem;
-        
         }
+
+        &.register{
+            @include m.tablet{
+                width: 80%;
+        }
+    }
 
         .textLogin{
             display: flex;
@@ -92,16 +102,12 @@
         .loginBoton{
             border-radius: 2rem;
                 color: v.$blanco;
-                width: 15rem;
+                width: 100%;
                 background: linear-gradient(to right, v.$verdeBiche, v.$terciario);
                 border: none;
                 font-size: 1.5rem;
                 padding: .8rem;
-                margin-bottom: 3rem;
-            @include m.telefono{
-                width: 25rem;
-                font-size: 2rem;
-            }
+                margin-bottom: 1.8rem;
             
             &:hover{
                 cursor: pointer;

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/App.css";
 import {
   FormControl,
@@ -12,9 +12,17 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import imgLogin from "../assets/Imagenes/Login/loginbg.png";
-import { login } from "../firebaseConfig";
+import { db, login, loginGoogle } from "../firebaseConfig";
+import {collection, doc, getDoc} from "firebase/firestore";
+import {AuthContext} from "../context/AuthContex"
+
+
 
 const Login = () => {
+
+  const {handleLogin} = useContext(AuthContext)
+
+
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -29,22 +37,33 @@ const Login = () => {
     setUser((prevUser) => ({ ...user, [e.target.name]: e.target.value }));
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const res = await login(user);
-      console.log(res)
-      res && navigate("/")
+      
+      if(res.user){
+        const userCollection = (collection(db, "users"));
+        const userRef = doc(userCollection, res.user.uid);
+        const userDoc = await getDoc(userRef)
+        let finalyUser = {
+          email: res.user.email,
+          rol: userDoc.data().rol,
+          nombre: userDoc.data().nombre
+        }
+        console.log(finalyUser)
+        handleLogin(finalyUser)
+        navigate("/");
+      }
     } catch (error) {
-      console.log(error)
-      navigate("/login")
+      console.log(error);
     }
-    
-  }
+  };
+
+  const googleLogin = async () => {
+    const res = await loginGoogle();
+    console.log(res);
+  };
 
   return (
     <div className="containerForm">
@@ -93,12 +112,19 @@ const Login = () => {
             </FormControl>
           </Grid>
           <div className="forgetPassword">
-            <Link>¿Olvidaste tu contraseña?</Link>
+            <Link to={"/olvideMiContraseña"}>¿Olvidaste tu contraseña?</Link>
           </div>
 
           <div className="containerBoton">
-            <button className="loginBoton">INICIAR SESIÓN</button>
-            <Link className="registro">Crear cuenta nueva</Link>
+            <button type="submit" className="loginBoton">
+              INICIAR SESIÓN
+            </button>
+            <button type="button" className="loginBoton" onClick={googleLogin}>
+              INGRESA CON GOOGLE
+            </button>
+            <Link className="registro" to={"/registro"}>
+              Crear cuenta nueva
+            </Link>
           </div>
         </div>
       </form>
