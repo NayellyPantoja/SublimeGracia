@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { FadeLoader } from "react-spinners"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons"
-import { AuthContext } from "../../context/AuthContex"
+import { AuthContext } from "../../context/AuthContext"
 
 
 const Solas = () => {
