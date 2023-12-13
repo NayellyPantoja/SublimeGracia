@@ -2,8 +2,8 @@ import {
   faHouse,
   faPersonPraying,
   faVideo,
-  faRightToBracket,
-  faArrowRightFromBracket
+  faArrowRightFromBracket,
+  faChartLine
 } from "@fortawesome/free-solid-svg-icons";
 
 export const routes = [
@@ -24,12 +24,12 @@ export const routes = [
     text: "Sermones",
     icon: faVideo  
 },
-// {
-//   id:4,
-//   path: "/login",  
-//   text: "Login",
-//   icon: faRightToBracket,
-// },
+{
+  id: 4,
+  path: "/dashboard",  
+  text: "Dashboard",
+  icon: faChartLine,
+},
 {
   id: 5,
   path: "/login",  

@@ -14,7 +14,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import imgLogin from "../assets/Imagenes/Login/loginbg.png";
 import { db, login, loginGoogle } from "../firebaseConfig";
 import {collection, doc, getDoc} from "firebase/firestore";
-import {AuthContext} from "../context/AuthContex"
+import {AuthContext} from "../context/AuthContext"
 
 
 
@@ -28,19 +28,19 @@ const Login = () => {
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
-  const [user, setUser] = useState({
+  const [userCredential, setUserCredential] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    setUser((prevUser) => ({ ...user, [e.target.name]: e.target.value }));
+    setUserCredential((prevUserCredential) => ({ ...userCredential, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await login(user);
+      const res = await login(userCredential);
       
       if(res.user){
         const userCollection = (collection(db, "users"));

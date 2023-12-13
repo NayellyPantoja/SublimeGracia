@@ -4,6 +4,8 @@ import { Suspense, lazy} from "react"
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
+import ProtectedAdmin from "./ProtectedAdmin";
+import Dashboard from "../componentes/dashboard/Dashboard";
 const Home = lazy(() => import("../pages/Home"));
 const EnQueCreemos = lazy(() => import("../pages/EnQueCreemos"));
 const Sermones = lazy(() => import("../pages/Sermones"))
@@ -20,7 +22,14 @@ function AppRouter() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/registro" element={<Register/>}/>
           <Route path="/olvideMiContraseña" element={<ForgotPassword/>}/>
+
+          <Route element={<ProtectedAdmin/>}>
+            <Route path="dashboard" element={<Dashboard/>}/>
+          </Route>
+
       </Routes>
+
+
       </BrowserRouter>
       
     </Suspense>

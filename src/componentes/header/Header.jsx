@@ -7,15 +7,15 @@ import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BotonNavbar from "./BotonNavbar";
 import { logout } from "../../firebaseConfig";
-import { AuthContext } from "../../context/AuthContex";
-
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = () => {
-  const {logoutContext} = useContext(AuthContext)
+  const { logoutContext, isLogged, user } = useContext(AuthContext);
+  const admin = import.meta.env.VITE_ADMIN;
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [pantalla, setPantalla] = useState(false);
-  
+
   const [sidebar, setSidebar] = useState(false);
 
   useEffect(() => {
@@ -45,11 +45,11 @@ const Header = () => {
       window.removeEventListener("resize", manejarAnchoDePantalla);
     };
   }, [pantalla]);
-  
-  const handleLogout = () =>{
-    logoutContext()
-    logout()
-  }
+
+  const handleLogout = () => {
+    logoutContext();
+    logout();
+  };
 
   return (
     <div className={`containerHeader ${scrolled ? "scrolled" : ""} `}>
@@ -68,31 +68,47 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className={`containerMenu ${sidebar ? "sidebarOpen" : ""}` }>
-        {pantalla || sidebar? (
+      <div className={`containerMenu ${sidebar ? "sidebarOpen" : ""}`}>
+        {pantalla || sidebar ? (
           <>
-          {sidebar && (
-            <BotonNavbar sidebar={sidebar} setSidebar={setSidebar}/>
-          )}
-          
-            {routes.map((ruta) => (
-              
-              <Link
-                className={`itemMenu ${
-                  location.pathname === ruta.path ? "activeLink" : ""
-                } ${sidebar ? "sidebarOpen" : ""}`} 
-                to={ruta.path}
-                key={ruta.id}
-                onClick={ruta.text === "Cerrar sesión" ? () => {handleLogout} : null}
-              >
-                <FontAwesomeIcon icon={ruta.icon} className={`iconMenu ${sidebar ? "sidebarOpen" : ""}` }/>
-                <span> {ruta.text}</span>
-              </Link>
-              
-            ))}
+            {sidebar && (
+              <BotonNavbar sidebar={sidebar} setSidebar={setSidebar} />
+            )}
+
+            {routes.map((ruta) => {
+              const isAdmin = isLogged && user.rol === admin;
+              if (
+                (isAdmin && isLogged) ||
+                (!isAdmin && isLogged && ruta.text !== "Dashboard") ||
+                (!isLogged &&
+                  ruta.text !== "Dashboard" &&
+                  ruta.text !== "Cerrar sesión")
+              ) {
+                return (
+                  <Link
+                    className={`itemMenu ${
+                      location.pathname === ruta.path ? "activeLink" : ""
+                    } ${sidebar ? "sidebarOpen" : ""}`}
+                    to={ruta.path}
+                    key={ruta.id}
+                    onClick={
+                      ruta.text === "Cerrar sesión" ? handleLogout : null
+                    }
+                  >
+                    <FontAwesomeIcon
+                      icon={ruta.icon}
+                      className={`iconMenu ${sidebar ? "sidebarOpen" : ""}`}
+                    />
+                    <span> {ruta.text}</span>
+                  </Link>
+                );
+              }
+
+              return null;
+            })}
           </>
         ) : (
-          <BotonNavbar sidebar={sidebar} setSidebar={setSidebar}/>
+          <BotonNavbar sidebar={sidebar} setSidebar={setSidebar} />
         )}
       </div>
     </div>

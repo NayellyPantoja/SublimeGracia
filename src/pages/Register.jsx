@@ -9,8 +9,10 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import { signUp } from "../firebaseConfig";
+import { db, signUp } from "../firebaseConfig";
 import {useNavigate } from "react-router-dom";
+import {setDoc, doc} from "firebase/firestore"
+
 
 const Register = () => {
     const navigate = useNavigate()
@@ -30,7 +32,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signUp(user)
+    let res = await signUp(user)
+    if(res.user.uid){
+      await setDoc(doc(db, "users", res.user.uid), {rol: "user", email: user.email, nombre: user.nombre, apellido: user.apellido})
+    }
     navigate("/login")
   }
 

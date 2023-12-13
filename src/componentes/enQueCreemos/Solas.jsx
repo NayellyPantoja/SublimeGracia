@@ -1,14 +1,16 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import background from "../../assets/Imagenes/Backgrounds/BackgroundEnQueCreemos.jpg"
 import { db } from "../../firebaseConfig"
 import {getDocs, collection} from "firebase/firestore" 
 import { useEffect } from "react"
 import { FadeLoader } from "react-spinners"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPenToSquare, faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons"
+import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons"
+import { AuthContext } from "../../context/AuthContex"
 
 
 const Solas = () => {
+  const {user} = useContext(AuthContext)
   const [solas, setSolas] = useState([])
   const [mainText, setMainText] = useState("")
   const [loading, setLoading] = useState(true)
@@ -60,7 +62,8 @@ const Solas = () => {
             (
               <>
               {mainText[0]?.description}
-            <FontAwesomeIcon className="botonEdit encabezado" icon={faPenToSquare} />
+              {user?.rol === "aB3xY7zK" && <FontAwesomeIcon className="botonEdit encabezado" icon={faPenToSquare} />}
+            
               </>
             )
             }
@@ -76,8 +79,13 @@ const Solas = () => {
               return(
                 <div key={sola.id} className="cardSolas">
                   <div className="iconContainer">
-                  <FontAwesomeIcon className="botonDelete" icon={faTrashCan}/>
-                  <FontAwesomeIcon className="botonEdit" icon={faPenToSquare} />
+                    {user?.rol === "aB3xY7zK" && 
+                    <>
+                    {/* <FontAwesomeIcon className="botonDelete" icon={faTrashCan}/> */}
+                    <FontAwesomeIcon className="botonEdit" icon={faPenToSquare} />
+                    </>
+                    }
+                  
                   </div>
                   
                   <p className="titleSolas">{sola.title}</p>
@@ -85,7 +93,10 @@ const Solas = () => {
                 </div>
               )
             })}
-            <FontAwesomeIcon className="buttonAdd" icon={faPlus} />
+            {
+              user?.rol === "aB3xY7zK" && <FontAwesomeIcon className="buttonAdd" icon={faPlus} />
+            }
+            
 
           
     </section>
