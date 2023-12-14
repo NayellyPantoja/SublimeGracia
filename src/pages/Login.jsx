@@ -13,7 +13,7 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import imgLogin from "../assets/Imagenes/Login/loginbg.png";
 import { db, login, loginGoogle } from "../firebaseConfig";
-import {collection, doc, getDoc} from "firebase/firestore";
+import {collection, doc, getDoc, setDoc} from "firebase/firestore";
 import {AuthContext} from "../context/AuthContext"
 
 
@@ -62,7 +62,19 @@ const Login = () => {
 
   const googleLogin = async () => {
     const res = await loginGoogle();
-    console.log(res);
+    let finalyUser = {
+      email: res.user.email,
+      rol: "user"
+    }
+    console.log("finalyUser", finalyUser)
+    handleLogin(finalyUser)
+    navigate("/");
+
+    if(res.user.uid){
+      await setDoc(doc(db, "users", res.user.uid), {rol: "user", email: finalyUser.email, nombre: finalyUser.email.split("@")[0], apellido: ""})
+    }
+
+    
   };
 
   return (

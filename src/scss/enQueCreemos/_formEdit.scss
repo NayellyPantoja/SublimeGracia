@@ -1,0 +1,44 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.formEdit{
+    width: 100%;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 2rem;
+
+    
+
+    .closeModal{
+        position: absolute;
+        height: 3rem;
+        padding: 3rem 3.3rem;
+        right: 0;
+        top: 0;
+        color: v.$primario;
+        &:hover{
+            color: v.$verdeBiche;
+            cursor: pointer
+        }
+    }
+    .buttonEdit{
+        background-color: v.$primario;
+        font-size: 1.4rem;
+        &:hover{
+            background-color: v.$verdeBiche;
+            
+        }
+    }
+
+    
+
+    .MuiOutlinedInput-root{
+        font-size: 1.4rem;
+
+    }
+
+    
+}
+
