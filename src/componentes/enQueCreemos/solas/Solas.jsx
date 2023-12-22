@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
-import background from "../../assets/Imagenes/Backgrounds/BackgroundEnQueCreemos.jpg";
-import { db } from "../../firebaseConfig";
+import background from "../../../assets/Imagenes/Backgrounds/BackgroundEnQueCreemos.jpg";
+import { db } from "../../../firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { useEffect } from "react";
 import { FadeLoader } from "react-spinners";
-import { AuthContext } from "../../context/AuthContext";
-import ModalEdit from "./ModalEdit";
-import CardSolas from "./CardSolas";
-import MainSolas from "./MainSolas";
+import { AuthContext } from "../../../context/AuthContext";
 
+import CardSolas from "./CardSolas";
+import MainSolas from "../main/MainSolas";
+import ModalEditSola from "../../modal/ModalEditSola";
 
 const Solas = () => {
   const { user } = useContext(AuthContext);
@@ -19,8 +19,7 @@ const Solas = () => {
   const [mainText, setMainText] = useState("");
   const [loading, setLoading] = useState(true);
   const [isChange, setIschange] = useState(false);
-  const [solaSelected, setSolaSelected] = useState(null)
-  
+  const [solaSelected, setSolaSelected] = useState(null);
 
   useEffect(() => {
     setIschange(false);
@@ -52,24 +51,38 @@ const Solas = () => {
     dataFetch();
   }, [isChange]);
 
-  const editSola = (id) => {
+  const editSola = () => {
     handleOpen();
-    console.log(id);
   };
 
   return (
     <>
-      <MainSolas background={background} loading={loading} mainText={mainText} user={user}/>
+      <MainSolas
+        background={background}
+        loading={loading}
+        mainText={mainText}
+        user={user}
+        setIschange={setIschange}
+      />
       <section className="sectionSolas">
         {loading ? (
           <FadeLoader color="#7CAC41" />
         ) : (
-          <CardSolas solas={solas} user={user} editSola={editSola} isChange={isChange} setSolaSelected={setSolaSelected}/>
+          <CardSolas
+            solas={solas}
+            user={user}
+            editSola={editSola}
+            isChange={isChange}
+            setSolaSelected={setSolaSelected}
+          />
         )}
         {open && (
-          
-            <ModalEdit open={open} handleClose={handleClose} solaSelected={solaSelected} setIschange={setIschange}/>
-          
+          <ModalEditSola
+            open={open}
+            handleClose={handleClose}
+            solaSelected={solaSelected}
+            setIschange={setIschange}
+          />
         )}
       </section>
     </>

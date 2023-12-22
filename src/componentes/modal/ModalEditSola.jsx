@@ -23,8 +23,6 @@ const ModalEdit = ({ open, handleClose, solaSelected,setIschange }) => {
     title: "",
     description:""
   })
-  
-  
 
   const handleChange = (e) => {
     setSolaEditada((prevSolaEditada) => ({...prevSolaEditada, [e.target.name]: e.target.value}))
@@ -32,8 +30,6 @@ const ModalEdit = ({ open, handleClose, solaSelected,setIschange }) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-  //   console.log("seleccionada", solaSelected)
-  // console.log("editada", solaEditada)
     const solasCollection = collection(db, "solas")
     updateDoc(doc(solasCollection, solaSelected.id), solaEditada).then(() =>{
       setIschange(true)
