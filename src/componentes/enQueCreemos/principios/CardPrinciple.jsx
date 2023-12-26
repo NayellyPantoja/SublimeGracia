@@ -41,17 +41,16 @@ const CardPrinciple = () => {
 
   const editPrincipio = () => {
     handleOpenEdit();
-
   }
 
   return (
     <div className="containerPrincipios">
     {
       principios.map((principio) => (
-        <span key={principio.id} className="containerCardPrincipio" onClick={() => {handleOpen(), setPrincipioSelected(principio)}}>
+        <span key={principio.id} className="containerCardPrincipio" onClick={() => { handleOpen(), setPrincipioSelected(principio)}}>
           {user?.rol === "aB3xY7zK" &&
-          <FontAwesomeIcon
-          onClick={() => {editPrincipio(); setPrincipioSelected(principio)}}
+            <FontAwesomeIcon
+          onClick={(e) => {e.stopPropagation() ,editPrincipio(); setPrincipioSelected(principio)}}
           className="botonEdit"
           icon={faPenToSquare}
         />
@@ -67,7 +66,7 @@ const CardPrinciple = () => {
       
     }
     {
-      openEdit && <ModalPrinciple handleCloseEdit={handleClose} principioSelected={principioSelected} openEdit={openEdit}/> 
+      openEdit && <ModalPrinciple handleCloseEdit={handleCloseEdit} principioSelected={principioSelected} openEdit={openEdit} setIsChange={setIsChange}/> 
     } 
     </div>
     

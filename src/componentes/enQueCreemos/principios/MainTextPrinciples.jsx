@@ -2,11 +2,11 @@ import { collection, getDocs } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { db } from "../../../firebaseConfig";
 import { FadeLoader } from "react-spinners";
-import ModalPrinciple from "../../modal/ModalPrinciple";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../../context/AuthContext";
 import CardPrinciple from "./CardPrinciple";
+import ModalMainTextPrincipios from "../../modal/ModalMainTextPrincipios";
 
 const MainTextPrinciples = () => {
     const {user} = useContext(AuthContext)
@@ -65,7 +65,7 @@ const MainTextPrinciples = () => {
                 </h4>
                 
                 {open && (
-                  <ModalPrinciple
+                  <ModalMainTextPrincipios
                     open={open}
                     handleClose={handleClose}
                     textSelected={textSelected}

@@ -27,10 +27,15 @@
             right: 0;
             padding-right: 2rem;
             height: 2rem;
-            
+            color: v.$primario;
+            &:hover{
+                color: v.$verdeOscuro;
+                cursor: pointer;
+            }
             @include m.tablet{
                 padding-right: 7rem;
             }
+            
         }
     }
     
@@ -84,7 +89,7 @@
             color: v.$blanco;
             height: 2.2rem;
             &:hover{
-                color: v.$backgroundSection;
+                color: v.$primario;
                 cursor: pointer;
             }
             
@@ -167,11 +172,11 @@
         }
 
         .descripcionPrincipio{
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: v.$blanco;
             font-weight: lighter;
             @include m.tablet{
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
         }
     }
@@ -185,5 +190,8 @@
         height: 70%;
     }
 }
+
+
+
 
 

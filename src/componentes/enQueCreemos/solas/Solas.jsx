@@ -7,7 +7,7 @@ import { FadeLoader } from "react-spinners";
 import { AuthContext } from "../../../context/AuthContext";
 
 import CardSolas from "./CardSolas";
-import MainSolas from "../main/MainSolas";
+import MainSolas from "./main/MainSolas";
 import ModalEditSola from "../../modal/ModalEditSola";
 
 const Solas = () => {

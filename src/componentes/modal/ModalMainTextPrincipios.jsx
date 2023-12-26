@@ -17,23 +17,26 @@ const style = {
   borderRadius: 2,
 };
 
-const ModalEdit = ({ open, handleClose, solaSelected,setIschange }) => {
-
-  const [solaEditada, setSolaEditada] = useState({
-    title: solaSelected.title,
-    description: solaSelected.description
-  })
+const ModalMainTextPrincipios = ({open, handleClose, textSelected, setIsChange}) => {
+  const [textEditado, setTextEditado] = useState({
+    title: textSelected.title,
+    description: textSelected.description
+   })
+    console.log("textSelected", textSelected)
 
   const handleChange = (e) => {
-    setSolaEditada(() => ({...solaEditada, [e.target.name]: e.target.value}))
+    setTextEditado(() => ({
+      ...textEditado, [e.target.name]: e.target.value
+    }))
   }
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    const solasCollection = collection(db, "solas")
-    updateDoc(doc(solasCollection, solaSelected.id), solaEditada).then(() =>{
-      setIschange(true)
+    const textCollection = collection(db, "textHealthyChurch")
+    updateDoc(doc(textCollection, textSelected.id), textEditado).then(() =>{
+      setIsChange(true)
       handleClose()
+      console.log(textSelected)
     })
   }
 
@@ -47,12 +50,18 @@ const ModalEdit = ({ open, handleClose, solaSelected,setIschange }) => {
 
         <form className="formEdit" >
         <FontAwesomeIcon icon={faXmark} onClick={handleClose} className="closeModal"/>
-          <TextField variant="outlined" label="Título" name="title" defaultValue={solaSelected?.title} onChange={handleChange}/>
+          <TextField
+            variant="outlined"
+            label="Título"
+            name="title"
+            defaultValue={textSelected.title}
+            onChange={handleChange}
+          />
           <TextField
             variant="outlined"
             label="Descripción"
             name="description"
-            defaultValue={solaSelected?.description}
+            defaultValue={textSelected.description}
             onChange={handleChange}
           />
           <Button variant="contained" className="buttonEdit" onClick={handleSubmit}>Actualizar</Button>
@@ -60,6 +69,6 @@ const ModalEdit = ({ open, handleClose, solaSelected,setIschange }) => {
       </Box>
     </Modal>
   );
-};
+}
 
-export default ModalEdit;
+export default ModalMainTextPrincipios

@@ -1,0 +1,159 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.containerConfesion{
+    background-color: v.$backgroundSection;
+    padding: 5rem 2rem;
+    @include m.tablet{
+        padding: 5rem 7rem ;
+    }
+    .titleConfesion{
+        text-align: center;
+    }
+}
+
+.containerItemConfesion{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .containerCardConfesion{
+        position: relative;
+        width: 80%;
+        background-color: v.$blanco;
+        margin-bottom: 1rem;
+        padding: 2rem;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        &:nth-child(even) {
+            flex-direction: row-reverse; 
+            margin-left: auto;
+        }
+        @include m.desktop{
+            height: 15rem;
+            margin-bottom: 1.5rem;
+        }
+        .containerIcon{
+            &.menuOpen .menuDropdown {
+                display: block;
+              }
+            .menuDropdown {
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 4rem; 
+                background-color: #fff; 
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+                z-index: 1000; 
+                .menuItem {
+                    padding: 0.5rem 1rem;
+                    color: v.$primario;
+                    cursor: pointer;
+                    &:hover {
+                      background-color: v.$verdeOscuro;
+                      color: #fff;
+                    }
+                  }
+              }
+            .menuIcons{
+                display: flex;
+                position: absolute;
+                right: 0;
+                top: 0;
+                margin: 2rem;
+                color: v.$primario;
+                height: 2.2rem;
+                &:hover{
+                    color: v.$verdeOscuro;
+                    cursor: pointer;
+                }
+                @include m.telefono{
+                    display: none
+                }
+            }
+            .botonEdit{
+                display: none;
+                @include m.telefono{
+                    display: flex;
+                    position: absolute;
+                right: 0;
+                top: 0;
+                margin: 2rem;
+                color: v.$primario;
+                height: 2.2rem;
+                &:hover{
+                    color: v.$verdeOscuro;
+                    cursor: pointer;
+                }
+                }
+            }
+            .botonDelete{
+                display: none;
+                @include m.telefono{
+                    display: flex;
+                    position: absolute;
+                right: 0;
+                top: 0;
+                margin: 2rem 5rem;
+                color: v.$primario;
+                height: 2.2rem;
+                &:hover{
+                    color: v.$verdeOscuro;
+                    cursor: pointer;
+                }
+                }
+                
+            }
+        }
+        
+        .contentWrapper{
+            display: flex;
+            align-items: center;
+            
+
+            .imgCardConfesion{
+                width: 15%;
+                height: 100%;
+                display: none;
+                @include m.desktop{
+                    display: flex;
+                }
+            }
+            .titleItemConfesion{
+                color: v.$verdeOscuro;
+                padding-bottom: 1rem;
+                max-width: 80%;
+            }
+            .textItemConfesion{
+                font-size: 1.6rem;
+                color: v.$verdeOscuro;
+                line-height: 1.8rem;
+            }
+        }
+        
+    }
+
+    .buttonAdd{
+        align-self: center;
+        color: v.$blanco;
+        height: 4rem;
+        background: linear-gradient(to right, v.$primario, #c7e58f);
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-size: 3rem;
+        &:hover{
+            background: linear-gradient(to right, #455d27,
+             #97b462);
+             cursor: pointer;
+        }
+        
+    }
+}
+
+.swal2-container {
+    z-index: 10000; 
+  }

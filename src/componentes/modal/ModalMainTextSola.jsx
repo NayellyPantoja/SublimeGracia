@@ -19,13 +19,13 @@ const style = {
 const ModalMainTextSola = ({open, handleCloseText, setIschange, textSelected}) => {
 
    const [textEditado, setTextEditado] = useState({
-    description: ""
+    description: textSelected.description
    })
     console.log("textSelected", textSelected)
 
   const handleChange = (e) => {
-    setTextEditado((prevTextEditado) => ({
-      ... prevTextEditado, description: e.target.value
+    setTextEditado(() => ({
+      ...textEditado, description: e.target.value
     }))
   }
 

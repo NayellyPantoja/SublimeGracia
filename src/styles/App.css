@@ -957,6 +957,11 @@ a {
   right: 0;
   padding-right: 2rem;
   height: 2rem;
+  color: #7CAC41;
+}
+.containerMainPrincipios .descriptionMainPrincipios .editTextPrincipio:hover {
+  color: #04441C;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .containerMainPrincipios .descriptionMainPrincipios .editTextPrincipio {
@@ -1012,7 +1017,7 @@ a {
   height: 2.2rem;
 }
 .containerPrincipios .containerCardPrincipio .botonEdit:hover {
-  color: #E1F1C1;
+  color: #7CAC41;
   cursor: pointer;
 }
 .containerPrincipios .containerCardPrincipio .imgCardPrincipio {
@@ -1089,13 +1094,13 @@ a {
   }
 }
 .containerModalPrincipio .containerDescripcionPrincipio .descripcionPrincipio {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #fff;
   font-weight: lighter;
 }
 @media (min-width: 768px) {
   .containerModalPrincipio .containerDescripcionPrincipio .descripcionPrincipio {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -1108,5 +1113,163 @@ a {
     width: 70%;
     height: 70%;
   }
+}
+
+.containerConfesion {
+  background-color: #E1F1C1;
+  padding: 5rem 2rem;
+}
+@media (min-width: 768px) {
+  .containerConfesion {
+    padding: 5rem 7rem;
+  }
+}
+.containerConfesion .titleConfesion {
+  text-align: center;
+}
+
+.containerItemConfesion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.containerItemConfesion .containerCardConfesion {
+  position: relative;
+  width: 80%;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.containerItemConfesion .containerCardConfesion:nth-child(even) {
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
+@media (min-width: 1024px) {
+  .containerItemConfesion .containerCardConfesion {
+    height: 15rem;
+    margin-bottom: 1.5rem;
+  }
+}
+.containerItemConfesion .containerCardConfesion .containerIcon.menuOpen .menuDropdown {
+  display: block;
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .menuDropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 4rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .menuDropdown .menuItem {
+  padding: 0.5rem 1rem;
+  color: #7CAC41;
+  cursor: pointer;
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .menuDropdown .menuItem:hover {
+  background-color: #04441C;
+  color: #fff;
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .menuIcons {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 2rem;
+  color: #7CAC41;
+  height: 2.2rem;
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .menuIcons:hover {
+  color: #04441C;
+  cursor: pointer;
+}
+@media (min-width: 480px) {
+  .containerItemConfesion .containerCardConfesion .containerIcon .menuIcons {
+    display: none;
+  }
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .botonEdit {
+  display: none;
+}
+@media (min-width: 480px) {
+  .containerItemConfesion .containerCardConfesion .containerIcon .botonEdit {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 2rem;
+    color: #7CAC41;
+    height: 2.2rem;
+  }
+  .containerItemConfesion .containerCardConfesion .containerIcon .botonEdit:hover {
+    color: #04441C;
+    cursor: pointer;
+  }
+}
+.containerItemConfesion .containerCardConfesion .containerIcon .botonDelete {
+  display: none;
+}
+@media (min-width: 480px) {
+  .containerItemConfesion .containerCardConfesion .containerIcon .botonDelete {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 2rem 5rem;
+    color: #7CAC41;
+    height: 2.2rem;
+  }
+  .containerItemConfesion .containerCardConfesion .containerIcon .botonDelete:hover {
+    color: #04441C;
+    cursor: pointer;
+  }
+}
+.containerItemConfesion .containerCardConfesion .contentWrapper {
+  display: flex;
+  align-items: center;
+}
+.containerItemConfesion .containerCardConfesion .contentWrapper .imgCardConfesion {
+  width: 15%;
+  height: 100%;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .containerItemConfesion .containerCardConfesion .contentWrapper .imgCardConfesion {
+    display: flex;
+  }
+}
+.containerItemConfesion .containerCardConfesion .contentWrapper .titleItemConfesion {
+  color: #04441C;
+  padding-bottom: 1rem;
+  max-width: 80%;
+}
+.containerItemConfesion .containerCardConfesion .contentWrapper .textItemConfesion {
+  font-size: 1.6rem;
+  color: #04441C;
+  line-height: 1.8rem;
+}
+.containerItemConfesion .buttonAdd {
+  align-self: center;
+  color: #fff;
+  height: 4rem;
+  background: linear-gradient(to right, #7CAC41, #c7e58f);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-size: 3rem;
+}
+.containerItemConfesion .buttonAdd:hover {
+  background: linear-gradient(to right, #455d27, #97b462);
+  cursor: pointer;
+}
+
+.swal2-container {
+  z-index: 10000;
 }
 /*# sourceMappingURL=app.css.map */

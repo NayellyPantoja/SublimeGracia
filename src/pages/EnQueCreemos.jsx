@@ -1,4 +1,5 @@
 
+import TextConfesion from "../componentes/enQueCreemos/Confesion/TextConfesion"
 import MainTextPrinciples from "../componentes/enQueCreemos/principios/MainTextPrinciples"
 import Solas from "../componentes/enQueCreemos/solas/Solas"
 import Header from "../componentes/header/Header"
@@ -10,6 +11,7 @@ const EnQueCreemos = () => {
     <Header/>
     <Solas/>
     <MainTextPrinciples/>
+    <TextConfesion/>
     </>
     
   )

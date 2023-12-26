@@ -2,7 +2,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { FadeLoader } from "react-spinners"
-import ModalMainTextSola from "../../modal/ModalMainTextSola"
+import ModalMainTextSola from "../../../modal/ModalMainTextSola"
 
 
 const MainSolas = ({background, loading, mainText, user, setIschange}) => {
