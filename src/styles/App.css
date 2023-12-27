@@ -447,7 +447,7 @@ a {
   overflow: hidden;
   gap: 2rem;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
 }
 @media (min-width: 768px) {
   .containerHeader {
@@ -670,6 +670,26 @@ a {
 .containerBienvenida .containerTextoBienvenida .textoBienvenida.solas .encabezado:hover {
   color: #455d27;
   cursor: pointer;
+}
+
+.descriptionHome {
+  font-weight: lighter;
+  letter-spacing: 0.05px;
+  text-align: center;
+  color: #04441C;
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+}
+@media (min-width: 480px) {
+  .descriptionHome {
+    padding: 2rem 2rem;
+    font-size: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  .descriptionHome {
+    padding: 2rem 7rem;
+  }
 }
 
 .containerForm {
@@ -952,19 +972,20 @@ a {
   max-width: 95%;
   padding-bottom: 4rem;
 }
-.containerMainPrincipios .descriptionMainPrincipios .editTextPrincipio {
+
+.editTextPrincipio {
   position: absolute;
   right: 0;
   padding-right: 2rem;
   height: 2rem;
   color: #7CAC41;
 }
-.containerMainPrincipios .descriptionMainPrincipios .editTextPrincipio:hover {
+.editTextPrincipio:hover {
   color: #04441C;
   cursor: pointer;
 }
 @media (min-width: 768px) {
-  .containerMainPrincipios .descriptionMainPrincipios .editTextPrincipio {
+  .editTextPrincipio {
     padding-right: 7rem;
   }
 }
@@ -1155,81 +1176,6 @@ a {
     margin-bottom: 1.5rem;
   }
 }
-.containerItemConfesion .containerCardConfesion .containerIcon.menuOpen .menuDropdown {
-  display: block;
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .menuDropdown {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 4rem;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .menuDropdown .menuItem {
-  padding: 0.5rem 1rem;
-  color: #7CAC41;
-  cursor: pointer;
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .menuDropdown .menuItem:hover {
-  background-color: #04441C;
-  color: #fff;
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .menuIcons {
-  display: flex;
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 2rem;
-  color: #7CAC41;
-  height: 2.2rem;
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .menuIcons:hover {
-  color: #04441C;
-  cursor: pointer;
-}
-@media (min-width: 480px) {
-  .containerItemConfesion .containerCardConfesion .containerIcon .menuIcons {
-    display: none;
-  }
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .botonEdit {
-  display: none;
-}
-@media (min-width: 480px) {
-  .containerItemConfesion .containerCardConfesion .containerIcon .botonEdit {
-    display: flex;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 2rem;
-    color: #7CAC41;
-    height: 2.2rem;
-  }
-  .containerItemConfesion .containerCardConfesion .containerIcon .botonEdit:hover {
-    color: #04441C;
-    cursor: pointer;
-  }
-}
-.containerItemConfesion .containerCardConfesion .containerIcon .botonDelete {
-  display: none;
-}
-@media (min-width: 480px) {
-  .containerItemConfesion .containerCardConfesion .containerIcon .botonDelete {
-    display: flex;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 2rem 5rem;
-    color: #7CAC41;
-    height: 2.2rem;
-  }
-  .containerItemConfesion .containerCardConfesion .containerIcon .botonDelete:hover {
-    color: #04441C;
-    cursor: pointer;
-  }
-}
 .containerItemConfesion .containerCardConfesion .contentWrapper {
   display: flex;
   align-items: center;
@@ -1271,5 +1217,300 @@ a {
 
 .swal2-container {
   z-index: 10000;
+}
+
+.containerIcon.menuOpen .menuDropdown {
+  display: block;
+}
+.containerIcon .menuDropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 4rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.containerIcon .menuDropdown.pastor {
+  margin-right: 5rem;
+}
+@media (min-width: 1024px) {
+  .containerIcon .menuDropdown.pastor {
+    margin-right: 8rem;
+  }
+}
+.containerIcon .menuDropdown .menuItem {
+  padding: 0.5rem 1rem;
+  color: #7CAC41;
+  cursor: pointer;
+}
+.containerIcon .menuDropdown .menuItem:hover {
+  background-color: #04441C;
+  color: #fff;
+}
+.containerIcon .menuIcons {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 2rem;
+  color: #7CAC41;
+  height: 2.2rem;
+}
+.containerIcon .menuIcons.pastor {
+  margin-right: 7.8rem;
+}
+@media (min-width: 1024px) {
+  .containerIcon .menuIcons.pastor {
+    margin-right: 11.2rem;
+  }
+}
+.containerIcon .menuIcons:hover {
+  color: #04441C;
+  cursor: pointer;
+}
+@media (min-width: 480px) {
+  .containerIcon .menuIcons {
+    display: none;
+  }
+}
+.containerIcon .botonEdit {
+  display: none;
+}
+.containerIcon .botonEdit.pastor {
+  margin-right: 6rem;
+}
+@media (min-width: 1024px) {
+  .containerIcon .botonEdit.pastor {
+    margin-right: 10rem;
+  }
+}
+@media (min-width: 480px) {
+  .containerIcon .botonEdit {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 2rem;
+    color: #7CAC41;
+    height: 2.2rem;
+  }
+  .containerIcon .botonEdit:hover {
+    color: #04441C;
+    cursor: pointer;
+  }
+}
+.containerIcon .botonDelete {
+  display: none;
+}
+.containerIcon .botonDelete.pastor {
+  margin-right: 9rem;
+}
+@media (min-width: 1024px) {
+  .containerIcon .botonDelete.pastor {
+    margin-right: 13rem;
+  }
+}
+@media (min-width: 480px) {
+  .containerIcon .botonDelete {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 2rem 5rem;
+    color: #7CAC41;
+    height: 2.2rem;
+  }
+  .containerIcon .botonDelete:hover {
+    color: #04441C;
+    cursor: pointer;
+  }
+}
+
+.containerPastores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+}
+@media (min-width: 768px) {
+  .containerPastores {
+    padding: 5rem 7rem;
+  }
+}
+.containerPastores .buttonAdd {
+  align-self: center;
+  color: #fff;
+  height: 4rem;
+  background: linear-gradient(to right, #7CAC41, #c7e58f);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-size: 3rem;
+}
+.containerPastores .buttonAdd:hover {
+  background: linear-gradient(to right, #455d27, #97b462);
+  cursor: pointer;
+}
+.containerPastores h2 {
+  margin-bottom: 4rem;
+  color: #04441C;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+}
+.containerPastores .boxImage {
+  position: relative;
+  border-radius: 50%;
+  background-color: #04441C;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  width: 20rem;
+  height: 20rem;
+}
+@media (min-width: 1024px) {
+  .containerPastores .boxImage {
+    width: 30rem;
+    height: 30rem;
+  }
+}
+.containerPastores .boxImage::before {
+  content: "";
+  position: absolute;
+  inset: -1rem 6rem;
+  background: linear-gradient(315deg, #E1F1C1, #7CAC41);
+  transition: 0.5s;
+  animation: animate 4s linear infinite;
+}
+@media (min-width: 1024px) {
+  .containerPastores .boxImage::before {
+    inset: -1rem 9rem;
+  }
+}
+.containerPastores .boxImage:hover::before {
+  inset: -2rem 0rem;
+}
+.containerPastores .boxImage::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+}
+@media (min-width: 1024px) {
+  .containerPastores .boxImage::after {
+    inset: 6px;
+  }
+}
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  0% {
+    transform: rotate(360deg);
+  }
+}
+.containerPastores .boxImage:hover .content img {
+  opacity: 0;
+}
+.containerPastores .content {
+  position: absolute;
+  inset: 1rem;
+  border: 3px solid #04441C;
+  z-index: 3;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .containerPastores .content {
+    border: 6px solid #04441C;
+    inset: 2rem;
+  }
+}
+.containerPastores .content img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 3;
+}
+.containerPastores .content h2 {
+  position: relative;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #04441C;
+  font-weight: 300;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  margin-top: 4rem;
+}
+@media (min-width: 1024px) {
+  .containerPastores .content h2 {
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    font-size: 2rem;
+  }
+}
+
+.containerFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20rem;
+  width: 100%;
+  padding: 2rem 2rem;
+  background-color: #C4DC94;
+}
+@media (min-width: 768px) {
+  .containerFooter {
+    padding: 2rem 7rem;
+  }
+}
+.containerFooter .containerLogo {
+  width: 15rem;
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .containerFooter .containerLogo {
+    width: 28rem;
+  }
+}
+.containerFooter .containerLogo .logoImagen {
+  width: 2.5rem;
+}
+@media (min-width: 480px) {
+  .containerFooter .containerLogo .logoImagen {
+    width: 18%;
+  }
+}
+.containerFooter .containerLogo .logoLetras {
+  display: none;
+}
+@media (min-width: 480px) {
+  .containerFooter .containerLogo .logoLetras {
+    display: inline;
+    width: 50%;
+  }
+}
+.containerFooter .containerLogo:hover {
+  cursor: pointer;
+}
+.containerFooter .containerSocial {
+  display: flex;
+  justify-content: end;
+}
+.containerFooter .containerSocial .iconFacebook {
+  color: #fff;
+  height: 3rem;
 }
 /*# sourceMappingURL=app.css.map */

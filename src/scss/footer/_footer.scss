@@ -1,0 +1,49 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.containerFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20rem;
+    width: 100%;
+    padding: 2rem 2rem;
+    background-color: v.$secundario;
+    @include m.tablet{
+        padding: 2rem 7rem;
+    }
+
+    .containerLogo{
+        width: 15rem;
+        padding: .3rem 0;
+        display: flex;
+        align-items: center;
+        @include m.tablet{
+            width: 28rem;
+        }
+        .logoImagen{
+            width: 2.5rem;
+            @include m.telefono{
+                width: 18%
+            }
+        };
+        .logoLetras{
+            display: none;
+            @include m.telefono{
+                display: inline;
+                width: 50%;
+            }
+        };
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .containerSocial{
+        display: flex;
+        justify-content: end;
+        .iconFacebook{
+            color: v.$blanco;
+            height: 3rem;
+        }
+    }
+}

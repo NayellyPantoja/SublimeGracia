@@ -1,3 +1,4 @@
+import Footer from "../componentes/footer/Footer"
 import Header from "../componentes/header/Header"
 
 
@@ -6,6 +7,7 @@ const Sermones = () => {
     <>
     <Header/>
     <div>Sermones</div>
+    <Footer/>
     </>
     
   )

@@ -22,25 +22,26 @@
         color: v.$verdeOscuro;
         max-width: 95%;
         padding-bottom: 4rem;
-        .editTextPrincipio{
-            position: absolute;
-            right: 0;
-            padding-right: 2rem;
-            height: 2rem;
-            color: v.$primario;
-            &:hover{
-                color: v.$verdeOscuro;
-                cursor: pointer;
-            }
-            @include m.tablet{
-                padding-right: 7rem;
-            }
-            
-        }
+        
     }
     
 }
 
+.editTextPrincipio{
+    position: absolute;
+    right: 0;
+    padding-right: 2rem;
+    height: 2rem;
+    color: v.$primario;
+    &:hover{
+        color: v.$verdeOscuro;
+        cursor: pointer;
+    }
+    @include m.tablet{
+        padding-right: 7rem;
+    }
+    
+}
 .closeModal{
     position: absolute;
     height: 3rem;

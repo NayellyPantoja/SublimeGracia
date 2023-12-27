@@ -1,0 +1,136 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.containerPastores{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+    @include m.tablet{
+        padding: 5rem 7rem;
+    }
+
+    .buttonAdd{
+        align-self: center;
+        color: v.$blanco;
+        height: 4rem;
+        background: linear-gradient(to right, v.$primario, #c7e58f);
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-size: 3rem;
+        &:hover{
+            background: linear-gradient(to right, #455d27,
+             #97b462);
+             cursor: pointer;
+        }
+        
+    }
+
+    h2{
+        margin-bottom: 4rem;
+        color: v.$verdeOscuro;
+        font-weight: 700;
+        letter-spacing: 0.05rem;
+    }
+
+    .boxImage{
+        position: relative;
+        border-radius: 50%;
+        background-color: v.$verdeOscuro;
+        overflow: hidden;
+        margin-bottom: 4rem;
+        width: 20rem;
+        height: 20rem;
+        @include m.desktop{
+            width: 30rem;
+            height: 30rem;
+        }
+        &::before{
+            content: '';
+            position: absolute; 
+            inset: -1rem 6rem;
+            background: linear-gradient(315deg, v.$backgroundSection, v.$primario);
+            transition: 0.5s;
+            animation: animate 4s linear infinite;
+            @include m.desktop{
+                inset: -1rem 9rem;
+            }
+        }
+        &:hover::before{
+            inset: -2rem 0rem;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: v.$blanco;
+            border-radius: 50%;
+            z-index: 1;
+            @include m.desktop{
+                inset: 6px;
+            }
+        }
+        @keyframes animate{
+            0%
+            {
+                transform: rotate(0deg);
+            }
+            0%
+            {
+                transform: rotate(360deg);
+            }
+        }
+        &:hover{
+            .content{
+                img{
+                    opacity: 0;
+                }
+            }
+        }
+
+        
+    }
+    .content{
+        position: absolute;
+        inset:1rem;
+        border: 3px solid v.$verdeOscuro;
+        z-index: 3;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include m.desktop{
+            border: 6px solid v.$verdeOscuro;
+            inset:2rem;
+        }
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+            pointer-events: none;
+            z-index: 3;
+        }
+        h2{
+            position: relative;
+            font-size: 1.4rem;
+            text-align: center;
+            color: v.$verdeOscuro;
+            font-weight: 300;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+            margin-top: 4rem;
+            @include m.desktop{
+                font-weight: 600;
+            letter-spacing: 0.05rem;
+            font-size: 2rem;
+            }
+        }
+    }
+}

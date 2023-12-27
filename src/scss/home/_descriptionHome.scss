@@ -1,0 +1,18 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.descriptionHome{
+    font-weight: lighter;
+    letter-spacing: 0.05px;
+    text-align: center;
+    color: v.$verdeOscuro;
+    padding: 1rem 2rem;
+    font-size: 1.7rem;
+    @include m.telefono{
+        padding: 2rem 2rem;
+        font-size: 2rem;
+    }
+    @include m.tablet{
+        padding: 2rem 7rem;
+    }
+}
