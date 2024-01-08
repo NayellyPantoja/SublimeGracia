@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import logoImagen from "../../assets/imgWebp/Logo/logoImagen.webp";
 import logoLetras from "../../assets/imgWebp/Logo/logoLetras.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquareFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faSquareFacebook, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
   return (
@@ -23,7 +23,8 @@ const Footer = () => {
       </div>
       <div className="containerSocial">
         <Link to={"https://www.facebook.com/groups/942151369574173/"}><FontAwesomeIcon icon={faSquareFacebook} className="iconFacebook"/></Link>
-       
+        <Link to={"https://www.youtube.com/@iglesiacristianasublimegra1100/videos"}><FontAwesomeIcon icon={faYoutube}  className="iconFacebook"/></Link>
+        
       </div>
     </div>
   )

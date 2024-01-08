@@ -39,6 +39,13 @@
                 background: rgba(0, 0, 0, 0.5);
             }
         }
+
+        &.sermones{
+            height: 70vh;
+            .backgroundHome{
+                height: 70vh;
+            }
+        }
     }
     .containerTextoBienvenida{
         position: absolute;

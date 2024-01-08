@@ -41,9 +41,15 @@
     .containerSocial{
         display: flex;
         justify-content: end;
+        &:last-child{
+            .iconFacebook{
+                margin-right: 0;
+            }
+        }
         .iconFacebook{
             color: v.$blanco;
             height: 3rem;
+            margin: 1rem;
         }
     }
 }

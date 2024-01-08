@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     padding: 5rem 2rem ;
+    gap: 1rem;
     background-color: v.$backgroundSection;
     @include m.telefono{
         flex-direction: row;
@@ -17,16 +18,22 @@
     }
 
     .cardSolas{
+        background-color: v.$secundario;
+        color: v.$verdeOscuro;
         position: relative;
-        width: 22rem;
-        height: 31rem;
+        width: 100%;
         border: 1rem solid v.$blanco;
         padding: 2rem;
-        margin: 2rem 1rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        @include m.telefono{
+            width: 18rem;
+        }
+        @include m.tablet{
+            width: 22rem;
+            height: 31rem;
+        }
 
         .titleSolas{
-            color: v.$blanco;
             font-weight: bold;
             font-size: 1.8rem;
             text-align: center;
@@ -35,7 +42,6 @@
         }
     
         .textSolas{
-            color: v.$blanco;
             font-weight: lighter;
             font-size: 1.4rem;
         }
@@ -57,10 +63,10 @@
                 }
             }
             .botonEdit{
-                color: v.$blanco;
+                color: v.$verdeOscuro;
                 height: 2.2rem;
                 &:hover{
-                    color: v.$backgroundSection;
+                    color: v.$blanco;
                     cursor: pointer;
                 }
                 
@@ -68,27 +74,6 @@
         }
 
         
-    }
-
-    .cardSolas:nth-child(1){
-        background-color: v.$cardSola1;
-        
-    }
-    .cardSolas:nth-child(2){
-        background-color: v.$cardSola2;
-        .textSolas, .titleSolas{
-            color: v.$verdeOscuro;
-        }
-        
-    }
-    .cardSolas:nth-child(3){
-        background-color: v.$cardSola3;
-    }
-    .cardSolas:nth-child(4){
-        background-color: v.$cardSola4;
-    }
-    .cardSolas:nth-child(5){
-        background-color: v.$negro;
     }
 
     .buttonAdd{

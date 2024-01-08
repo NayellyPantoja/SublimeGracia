@@ -5,6 +5,7 @@ import { Box, Button, Modal, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 
 const style = {
   position: "absolute",
@@ -92,6 +93,11 @@ const ModalItemConfesion = ({
     e.preventDefault();
 
     if (edit) {
+      if (confesionSelected.img) {
+        const storage = getStorage();
+        const storageRef = ref(storage, confesionSelected.img);
+        await deleteObject(storageRef);
+      }
       const confesionCollection = collection(db, "itemConfesion");
       await updateDoc(
         doc(confesionCollection, confesionSelected.id),

@@ -91,6 +91,11 @@ const ModalPastor = ({
     e.preventDefault();
 
     if (edit) {
+      if (pastorSelected.img) {
+        const storage = getStorage();
+        const storageRef = ref(storage, pastorSelected.img);
+        await deleteObject(storageRef);
+      }
       const pastorCollection = collection(db, "pastor");
       await updateDoc(
         doc(pastorCollection, pastorSelected.id),

@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import ProtectedAdmin from "./ProtectedAdmin";
-import Dashboard from "../componentes/dashboard/Dashboard";
+import DashboardPage from "../pages/DashboardPage";
 const Home = lazy(() => import("../pages/Home"));
 const EnQueCreemos = lazy(() => import("../pages/EnQueCreemos"));
 const Sermones = lazy(() => import("../pages/Sermones"))
@@ -24,7 +24,7 @@ function AppRouter() {
           <Route path="/olvideMiContraseña" element={<ForgotPassword/>}/>
 
           <Route element={<ProtectedAdmin/>}>
-            <Route path="dashboard" element={<Dashboard/>}/>
+            <Route path="dashboard" element={<DashboardPage/>}/>
           </Route>
 
       </Routes>

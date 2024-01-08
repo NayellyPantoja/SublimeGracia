@@ -1,0 +1,29 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.videos{
+    padding: 3rem 3rem;
+    width: 100%;
+    @include m.tablet{
+      width: 100%;
+      padding: 3rem 7rem;
+    }
+    .containerSerie{
+      margin: 3rem 0;
+      h2{
+        font-weight:lighter ;
+        font-size: 2rem;
+        color: v.$verdeOscuro;
+        margin-bottom: .5rem;
+      }
+      
+        .carrusel{
+          border-radius: 1.5rem;
+      }
+      
+    }
+
+        
+}
+
+

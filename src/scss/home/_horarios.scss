@@ -1,0 +1,116 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.sectionReuniones {
+    width: 100%;
+    padding: 0rem 2rem 6rem 2rem;
+    margin-bottom: 4rem;
+    @include m.tablet{
+        padding: 0rem 7rem 6rem 7rem;
+    }
+    .containerReuniones {
+        position: relative;
+        display: flex;
+        justify-content: start;
+        .containerImage {
+          position: relative;
+            width: 90%;
+            height: 35rem;
+            border-radius: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.4);
+            @include m.desktop{
+              height: 30rem;
+            }
+            
+            &::before{
+              content: "";
+              position: absolute;
+              border-radius: 2rem;
+              top: 0;
+              right: 0;
+              left: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.7);
+              @include m.telefono{
+                  bottom: 0;
+              }
+          }
+          .imagenIglesia{
+            border-radius: 2rem;
+            width: 100%;
+            height: 35rem;
+            object-fit: cover;
+            @include m.desktop{
+              height: 30rem;
+            }
+          }
+          p{
+            position: absolute;
+            width:80%;
+            background: rgba(v.$negro , 0.7);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: v.$blanco;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            font-size:1.4rem;
+            line-height: 1.8rem;
+            @include m.tablet{
+              font-size: 1.6rem;
+              line-height: 2rem;
+              padding: 3rem;
+              border-radius: 2rem;
+            }
+          }
+      }
+      .containerHorarios {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: v.$secundario;
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: -4rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.4);
+        @include m.tablet{
+          padding: 4rem;
+          border-radius: 2rem;
+        }
+      }
+      .containerReunion {
+        display: flex;
+        &:last-child {
+          h3 {
+            margin-bottom: 0;
+          }
+        }
+        h3 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+            margin-bottom: 1rem; 
+            color: v.$verdeOscuro;
+            font-size: 1.5rem;
+            letter-spacing: .1rem;
+            line-height: 1.8rem;
+            @include m.tablet{
+              flex-direction: row;
+              font-size: 1.8rem;
+              line-height: 2.5rem;
+              span{
+                margin-left: .5rem;
+              }
+            }
+            
+          }
+      }
+  }
+}
+  
+  
+  
+  
+
+

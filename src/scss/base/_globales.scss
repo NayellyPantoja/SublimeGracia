@@ -1,5 +1,32 @@
 @use "variables" as v;
 
+.leaflet-container {
+    height: 300px;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    z-index: 1;
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button.slick-arrow.slick-next,
+button.slick-arrow.slick-prev {
+    background: v.$secundario;
+    border-radius: 50%;
+    width: 2.3rem;
+    height: 2.3rem;
+}
+
+.slick-slider .slick-track {
+    margin-left: 0;
+}
+
 html{
     font-size: 10px;
     box-sizing: border-box;
@@ -29,3 +56,4 @@ p{
 a{
     text-decoration: none;
 }
+

@@ -9,7 +9,9 @@
     padding: 5rem 2rem;
     @include m.tablet{
         padding: 5rem 7rem;
+        
     }
+    
 
     .buttonAdd{
         align-self: center;
@@ -40,9 +42,11 @@
         border-radius: 50%;
         background-color: v.$verdeOscuro;
         overflow: hidden;
-        margin-bottom: 4rem;
         width: 20rem;
         height: 20rem;
+        &:last-child{
+            margin-bottom: 4rem;
+        }
         @include m.desktop{
             width: 30rem;
             height: 30rem;
@@ -132,5 +136,17 @@
             font-size: 2rem;
             }
         }
+    }
+}
+
+.containerItemPastor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include m.telefono{
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2rem;
     }
 }

@@ -21,9 +21,9 @@ const Header = () => {
     const handleScroll = () => {
       window.scrollY > 10 ? setScrolled(true) : setScrolled(false);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll, { passive: true });
     };
   }, []);
 
@@ -51,7 +51,7 @@ const Header = () => {
   };
 
   return (
-    <div className={`containerHeader ${scrolled ? "scrolled" : ""} `}>
+    <div className={`containerHeader ${scrolled || location.pathname === "/dashboard" ? "scrolled" : ""} `}>
       <div className="containerLogo">
         <Link to="/">
           <img

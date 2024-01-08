@@ -12,6 +12,7 @@ import { Button } from "@mui/material";
 import ModalItemConfesion from "../../modal/ModalItemConfesion";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import { FadeLoader } from "react-spinners";
+import Swal from "sweetalert2";
 
 const ItemConfesion = () => {
   const { user } = useContext(AuthContext);
@@ -63,7 +64,18 @@ const ItemConfesion = () => {
   };
   const deleteConfesion = async (item) => {
     try {
-      console.log(item.id);
+      const shouldDelete = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: `¡Eliminarás ${item.title}!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7CAC41',
+        cancelButtonColor: '#04441C',
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'Cancelar',
+      });
+      
+      if (shouldDelete.isConfirmed) {
       if (item.img) {
         const storage = getStorage();
         const storageRef = ref(storage, item.img);
@@ -71,6 +83,12 @@ const ItemConfesion = () => {
       }
       await deleteDoc(doc(db, "itemConfesion", item.id));
       setIsChange(true);
+      Swal.fire({
+        title: 'Eliminado',
+        text: `${item.title} ha sido eliminado`,
+        icon: 'success',
+        confirmButtonColor: '#7CAC41'});
+    }
     } catch (error) {
       console.error("Error al eliminar la confesión:", error);
     }

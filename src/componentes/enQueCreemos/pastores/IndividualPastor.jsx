@@ -12,6 +12,7 @@ import ModalPastor from "../../modal/ModalPastor";
 import { FadeLoader } from "react-spinners";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import { Button } from "@mui/material";
+import Swal from "sweetalert2";
 
 const IndividualPastor = () => {
   const { user } = useContext(AuthContext);
@@ -62,15 +63,34 @@ const IndividualPastor = () => {
 
   const deletePastor = async (pastor) => {
     try {
-      if (pastor.img) {
-        const storage = getStorage();
-        const storageRef = ref(storage, pastor.img);
-        await deleteObject(storageRef);
+      const shouldDelete = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: `¡Eliminarás al pastor ${pastor.nombre} ${pastor.apellido}!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7CAC41',
+        cancelButtonColor: '#04441C',
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'Cancelar',
+      });
+
+      if (shouldDelete.isConfirmed) {
+        if (pastor.img) {
+          const storage = getStorage();
+          const storageRef = ref(storage, pastor.img);
+          await deleteObject(storageRef);
+        }
+        await deleteDoc(doc(db, 'pastor', pastor.id));
+        setIsChange(true);
+        Swal.fire({
+        title: 'Eliminado',
+        text: `El pastor ${pastor.nombre} ${pastor.apellido} ha sido eliminado`,
+        icon: 'success',
+        confirmButtonColor: '#7CAC41'});
       }
-      await deleteDoc(doc(db, "pastor", pastor.id));
-      setIsChange(true);
     } catch (error) {
-      console.error("Error al eliminar la confesión:", error);
+      console.error('Error al eliminar el pastor:', error);
+      Swal.fire('Error', 'Hubo un error al intentar eliminar al pastor', 'error');
     }
   };
 
@@ -81,6 +101,7 @@ const IndividualPastor = () => {
       ) : (
         <>
           <h2>Acompañados por nuestros pastores</h2>
+          <div className="containerItemPastor">
           {pastores.map((pastor) => (
             <div key={pastor.id} className="boxImage">
               <div className="content">
@@ -139,6 +160,8 @@ const IndividualPastor = () => {
               </div>
             </div>
           ))}
+          </div>
+          
           {user?.rol === "aB3xY7zK" && (
             <Button className="buttonAdd pastor" onClick={addPastor}>
               +

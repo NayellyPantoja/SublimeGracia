@@ -10,6 +10,7 @@ import CardSolas from "./CardSolas";
 import MainSolas from "./main/MainSolas";
 import ModalEditSola from "../../modal/ModalEditSola";
 
+
 const Solas = () => {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -54,6 +55,7 @@ const Solas = () => {
   const editSola = () => {
     handleOpen();
   };
+  
 
   return (
     <>
@@ -65,9 +67,11 @@ const Solas = () => {
         setIschange={setIschange}
       />
       <section className="sectionSolas">
+        
         {loading ? (
           <FadeLoader color="#7CAC41" />
         ) : (
+          
           <CardSolas
             solas={solas}
             user={user}
