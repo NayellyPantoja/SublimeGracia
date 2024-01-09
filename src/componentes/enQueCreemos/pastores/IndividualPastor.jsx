@@ -100,7 +100,7 @@ const IndividualPastor = () => {
         <FadeLoader color="#7CAC41" />
       ) : (
         <>
-          <h2>Acompañados por nuestros pastores</h2>
+          <h2>Cuerpo pastoral</h2>
           <div className="containerItemPastor">
           {pastores.map((pastor) => (
             <div key={pastor.id} className="boxImage">

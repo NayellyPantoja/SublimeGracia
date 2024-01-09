@@ -67,6 +67,9 @@ const ModalDescriptionHome = ({
             onChange={handleChange}
             multiline 
             rows={15} 
+            InputProps={{
+              style: { fontSize: '16px' } 
+            }}
           />
           <Button
             variant="contained"

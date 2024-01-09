@@ -308,7 +308,7 @@ template {
 }
 
 .leaflet-container {
-  height: 300px;
+  height: 500px;
   width: 100%;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -368,10 +368,15 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2rem;
 }
 .containerLoader.fallback {
   width: 100vw;
   height: 100vh;
+}
+
+.css-1ald77x {
+  font-size: 1.7rem;
 }
 
 .containerLogo {
