@@ -55,6 +55,8 @@ const ModalMainTextSola = ({open, handleCloseText, setIschange, textSelected}) =
             name="description"
             defaultValue={textSelected.description}
             onChange={handleChange}
+            multiline 
+            rows={10}
           />
           <Button variant="contained" className="buttonEdit" onClick={handleSubmit}>Actualizar</Button>
         </form>

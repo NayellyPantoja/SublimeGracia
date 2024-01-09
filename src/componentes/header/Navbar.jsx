@@ -24,8 +24,8 @@ const Navbar = ({ routes, isLogged, user, admin, sidebar, handleLogout }) => {
             >
               <FontAwesomeIcon
                 icon={ruta.icon}
-                className={`iconMenu ${sidebar ? "sidebarOpen" : ""}`}
-              />
+                className={`iconMenu ${sidebar ? "sidebarOpen" : ""} ${location.pathname === ruta.path ? "activeLink" : ""}`}
+              ></FontAwesomeIcon>
               <span> {ruta.text}</span>
             </Link>
           );

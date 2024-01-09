@@ -14,8 +14,8 @@ export const routes = [
     icon:  faHouse  },
   {
     id: 2,
-    path: "/enQueCreemos",
-    text: "En qué creemos",
+    path: "/quienesSomos",
+    text: "Quienes somos",
     icon: faPersonPraying ,
   },
   { 

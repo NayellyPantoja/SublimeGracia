@@ -63,6 +63,8 @@ const ModalTextConfesion = ({open, handleClose, textSelected, setIsChange}) => {
                 name="description"
                 defaultValue={textSelected.description}
                 onChange={handleChange}
+                multiline 
+                rows={15}
               />
               <Button variant="contained" className="buttonEdit" onClick={handleSubmit}>Actualizar</Button>
             </form>

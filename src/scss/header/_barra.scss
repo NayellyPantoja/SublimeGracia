@@ -61,6 +61,10 @@
         padding: 1rem;
         z-index: 100;
         border-bottom-left-radius: 1rem;
+        gap:0;
+        @include m.telefono{
+            width: 45%;
+        }
     }
 
     .itemMenu{

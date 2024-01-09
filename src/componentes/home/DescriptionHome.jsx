@@ -45,7 +45,9 @@ const DescriptionHome = () => {
     return (
       <>
         {loading ? (
+          <div className="containerLoader">
           <FadeLoader color="#7CAC41" />
+        </div>
         ) : (
           <div className="containerMainPrincipios">
             {text?.map((item) => {

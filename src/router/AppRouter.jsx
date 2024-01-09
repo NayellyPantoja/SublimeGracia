@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import ProtectedAdmin from "./ProtectedAdmin";
 import DashboardPage from "../pages/DashboardPage";
+import { FadeLoader } from "react-spinners";
 const Home = lazy(() => import("../pages/Home"));
 const EnQueCreemos = lazy(() => import("../pages/EnQueCreemos"));
 const Sermones = lazy(() => import("../pages/Sermones"))
@@ -13,11 +14,13 @@ const Sermones = lazy(() => import("../pages/Sermones"))
 
 function AppRouter() {
   return (
-    <Suspense fallback={<h3>CARGANDO...</h3>}>
+    <Suspense fallback={<div className="containerLoader fallback">
+    <FadeLoader color="#7CAC41" />
+  </div>}>
       <BrowserRouter>
       <Routes>
           <Route path="/" element= {<Home/>} />
-          <Route path="/enQueCreemos" element= {<EnQueCreemos/>} />
+          <Route path="/quienesSomos" element= {<EnQueCreemos/>} />
           <Route path="/sermones" element= {<Sermones/>} />
           <Route path="/login" element={<Login/>}/>
           <Route path="/registro" element={<Register/>}/>

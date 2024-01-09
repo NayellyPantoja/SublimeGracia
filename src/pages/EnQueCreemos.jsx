@@ -13,7 +13,7 @@ const EnQueCreemos = () => {
     <>
     <Header/>
     <Solas/>
-    <MainTextPrinciples/>
+    {/* <MainTextPrinciples/> */}
     <TextConfesion/>
     <IndividualPastor/>
     <Footer/>

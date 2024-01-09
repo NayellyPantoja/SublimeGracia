@@ -112,10 +112,7 @@ const Main = () => {
     ],
   };
 
-  useEffect(() => {
-    console.log("Total de elementos:", series.length);
-    console.log("Índice actual:", settings.initialSlide);
-  }, [series, settings.initialSlide]);
+  
 
   return (
     <div className="containerBienvenida sermones">

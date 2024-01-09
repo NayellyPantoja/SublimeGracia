@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import ModalTextConfesion from "../../modal/ModalTextConfesion";
 import ItemConfesion from "./ItemConfesion";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 
 const TextConfesion = () => {
@@ -46,14 +48,19 @@ const TextConfesion = () => {
     return (
       <>
         {loading ? (
-          <FadeLoader color="#7CAC41" />
+          <div className="containerLoader">
+            <FadeLoader color="#7CAC41" />
+          </div>
+          
         ) : (
           <div className="containerMainPrincipios containerConfesion">
+            
             {text?.map((item) => {
               return (
-                <div key={item.id}>
+                <div key={item.id} className="containerDescriptionConfesion">
+                  
                   <h2 className="titleMainPrincipios titleConfesion">{item.title}</h2>
-                  <h4 className="descriptionMainPrincipios">
+                  <h4 className="descriptionMainConfesion">
                     
                     {user?.rol === "aB3xY7zK" && (
                     <FontAwesomeIcon
@@ -73,12 +80,12 @@ const TextConfesion = () => {
                       setIsChange={setIsChange}
                     />
                   )}
-  
-                  <ItemConfesion/>
+                  <Button className="linkConfesion"><Link to="https://www.chapellibrary.org/pdf/books/lbcos.pdf">Conoce más aquí</Link></Button>
                 </div>
               );
             })}
-  
+            
+                  <ItemConfesion/>
             
           </div>
         )}

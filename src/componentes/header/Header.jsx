@@ -29,7 +29,7 @@ const Header = () => {
 
   useEffect(() => {
     const manejarAnchoDePantalla = () => {
-      const esAnchoMayor = window.innerWidth > 480;
+      const esAnchoMayor = window.innerWidth > 670;
       if (esAnchoMayor && !pantalla) {
         setPantalla(true);
       } else if (!esAnchoMayor && pantalla) {

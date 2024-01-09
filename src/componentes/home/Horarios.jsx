@@ -42,7 +42,9 @@ const Horarios = () => {
   return (
     <section className="sectionReuniones">
       {loading ? (
-      <FadeLoader color="#7CAC41"/>
+      <div className="containerLoader">
+      <FadeLoader color="#7CAC41" />
+    </div>
       ) : (
         <div className="containerReuniones">
           

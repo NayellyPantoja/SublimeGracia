@@ -64,7 +64,7 @@
             padding: 2rem;
             margin-left: 2rem;
             border-radius: 1rem;
-            background-color: rgba($color: v.$primario, $alpha: 0.7);
+            background-color: rgba($color: v.$secundario, $alpha: 0.8);
             @include m.telefono{
                 top: 75%;
             }

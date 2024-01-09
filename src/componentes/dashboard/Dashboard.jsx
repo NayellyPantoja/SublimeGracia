@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   collection,
-  deleteDoc,
   doc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../firebaseConfig";
+import { db, logoutOtherUser } from "../../firebaseConfig";
 import {
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -19,21 +17,17 @@ import {
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { FadeLoader } from "react-spinners";
+import { AuthContext } from "../../context/AuthContext";
 
 const Dashboard = () => {
+  const {setUser} = useContext(AuthContext)
   const [userSelected, setUserSelected] = useState(null);
   const [isChange, setIsChange] = useState(false);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [newRol, setNewRol] = useState("");
-  const userEditado = {
-    ...userSelected,
-    rol: newRol == "admin" ? "aB3xY7zK" : "user",
-  };
 
-  console.log("userEditado", userEditado);
 
   useEffect(() => {
     setIsChange(false);
@@ -53,31 +47,34 @@ const Dashboard = () => {
     dataFetch();
   }, [isChange]);
 
+
   const handleChangeRol = async () => {
     try {
       const userCollection = collection(db, "users");
-      const userEditado = {
-        ...userSelected,
-        rol: newRol === "admin" ? "aB3xY7zK" : "user",
-      };
-      await updateDoc(doc(userCollection, userSelected.id), userEditado);
-      setIsChange(true);
+    const userEditado = {
+      ...userSelected,
+      rol: newRol === "admin" ? "aB3xY7zK" : "user",
+    };
+    await updateDoc(doc(userCollection, userSelected.id), userEditado);
+    setIsChange(true);
+    
+    await logoutOtherUser(userEditado.id, setUser);
+
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div style={{ paddingTop: "5rem" }}>
+    <div className="containerTable">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 500 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">ID</TableCell>
-              <TableCell align="left">Nombre</TableCell>
-              <TableCell align="left">Apellido</TableCell>
-              <TableCell align="left">Rol</TableCell>
-              <TableCell align="left">acciones</TableCell>
+              <TableCell align="left" style={{fontSize:"1.5rem", fontWeight:"bolder"}}>Nombre</TableCell>
+              <TableCell align="left" style={{fontSize:"1.5rem", fontWeight:"bolder"}}>Apellido</TableCell>
+              <TableCell align="left" style={{fontSize:"1.5rem", fontWeight:"bolder"}}>Rol</TableCell>
+              <TableCell align="left" style={{fontSize:"1.5rem", fontWeight:"bolder"}}>Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -86,19 +83,17 @@ const Dashboard = () => {
                 key={user.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row" align="left">
-                  {user.id}
-                </TableCell>
-                <TableCell component="th" scope="row" align="left">
+                <TableCell component="th" scope="row" align="left" style={{fontSize:"1.5rem"}}>
                   {user.nombre}
                 </TableCell>
-                <TableCell component="th" scope="row" align="left">
+                <TableCell component="th" scope="row" align="left" style={{fontSize:"1.5rem"}}>
                   {user.apellido}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
                   align="left"
+                  style={{fontSize:"1.5rem"}}
                   onClick={() => {
                     setUserSelected(user);
                     setDropdownOpen(!dropdownOpen);
@@ -126,6 +121,7 @@ const Dashboard = () => {
                   <FontAwesomeIcon
                     icon={faTrashCan}
                     className="botonDelete pastor"
+                    style={{fontSize:"1.5rem"}}
                   />
                 </TableCell>
               </TableRow>

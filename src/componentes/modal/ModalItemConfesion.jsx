@@ -144,6 +144,8 @@ const ModalItemConfesion = ({
             name="description"
             defaultValue={confesionSelected?.description }
             onChange={handleChange}
+            multiline 
+            rows={12}
           />
           <TextField type="file" onChange={(e) => setFile(e.target.files[0])} />
           {file && !imgCargada && (

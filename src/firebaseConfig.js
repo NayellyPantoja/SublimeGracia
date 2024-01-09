@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {signInWithEmailAndPassword, getAuth, signOut, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendPasswordResetEmail} from "firebase/auth";
-import {getFirestore} from "firebase/firestore"
+import {collection, doc, getDoc, getFirestore} from "firebase/firestore"
 import {getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage"
 import {v4} from "uuid"
 
@@ -37,8 +37,51 @@ export const logout = () =>{
     } catch (error) {
         console.log(error)
     }
-    
 }
+
+// logout other user
+
+export const logoutOtherUser = async (userId, setUser) => {
+    try {
+      const auth = getAuth();
+  
+      // Obtén el usuario correspondiente al ID desde Firestore.
+      const user = await getUserById(userId);
+      console.log("getUserlogoutOtherUserById", userId);
+      console.log("getUserById", user);
+  
+      // Verifica si el usuario existe antes de intentar cerrar su sesión.
+      if (user) {
+        // Cierra la sesión del usuario específico.
+
+        await signOut(auth);
+        console.log(`Se cerró la sesión del usuario con ID ${userId}.`);
+        setUser({});
+      } else {
+        console.log(`No se encontró un usuario con el ID ${userId}.`);
+      }
+    } catch (error) {
+      console.error("Error al cerrar sesión del usuario:", error);
+    }
+  };
+  
+  const getUserById = async (userId) => {
+    try {
+      const userCollection = collection(db, "users");
+      const userDoc = await getDoc(doc(userCollection, userId));
+  
+      if (userDoc.exists()) {
+        const userData = { ...userDoc.data(), id: userDoc.id };
+        return userData;
+      } else {
+        console.log(`No se encontró un usuario con el ID ${userId} en Firestore.`);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al obtener información del usuario por ID:", error);
+      return null;
+    }
+  };
 
 //Login con google
 

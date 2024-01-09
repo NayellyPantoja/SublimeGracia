@@ -7,9 +7,39 @@
     @include m.tablet{
         padding: 5rem 7rem ;
     }
-    .titleConfesion{
-        text-align: center;
+    .containerDescriptionConfesion{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .titleConfesion{
+            text-align: center;
+        }
+        .descriptionMainConfesion{
+            font-weight: lighter;
+            font-weight: 1.8rem;
+            color: v.$verdeOscuro;
+            max-width: 95%;
+            
+        }
+        .linkConfesion{
+            background-color: v.$secundario;
+            margin-top: 2rem ;
+            margin-bottom: 4rem;  
+            a{
+                color: v.$verdeOscuro;
+                font-size: 1.5rem;
+                
+            }
+            &:hover{
+                background-color: v.$verdeOscuro;
+                a{
+                    color: v.$blanco;
+                }
+            }
+        }
     }
+    
 }
 
 .containerItemConfesion{

@@ -54,6 +54,8 @@ const ModalEdit = ({ open, handleClose, solaSelected,setIschange }) => {
             name="description"
             defaultValue={solaSelected?.description}
             onChange={handleChange}
+            multiline 
+            rows={15}
           />
           <Button variant="contained" className="buttonEdit" onClick={handleSubmit}>Actualizar</Button>
         </form>
