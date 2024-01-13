@@ -4,7 +4,7 @@ const Bienvenida = () => {
   return (
     <div className="containerBienvenida">
       <div className="containerImgBgHome">
-        <img className="backgroundHome" src={imgBack} alt="" />
+        <img className="backgroundHome" src={imgBack} alt="Fondo pantalla principal" />
       </div>
       <div className="containerTextoBienvenida">
         <h1 className="tituloBienvenida">

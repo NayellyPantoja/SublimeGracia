@@ -151,7 +151,7 @@ const IndividualPastor = () => {
                     </div>
                   </>
                 )}
-                <img src={pastor.img} />
+                <img src={pastor.img} alt={`Foto del pastor`}/>
                 <h2>
                   {pastor.nombre}
                   <br />

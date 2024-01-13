@@ -68,7 +68,7 @@ const ModalDescriptionHome = ({
             multiline 
             rows={15} 
             InputProps={{
-              style: { fontSize: '16px' } 
+              style: { fontSize: '15px' } 
             }}
           />
           <Button

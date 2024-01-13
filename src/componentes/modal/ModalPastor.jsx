@@ -91,7 +91,7 @@ const ModalPastor = ({
     e.preventDefault();
 
     if (edit) {
-      if (pastorSelected.img) {
+      if (pastorSelected.img != pastorEditado.img) {
         const storage = getStorage();
         const storageRef = ref(storage, pastorSelected.img);
         await deleteObject(storageRef);

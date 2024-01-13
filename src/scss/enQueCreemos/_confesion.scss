@@ -25,7 +25,8 @@
         .linkConfesion{
             background-color: v.$secundario;
             margin-top: 2rem ;
-            margin-bottom: 4rem;  
+            margin-bottom: 4rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
             a{
                 color: v.$verdeOscuro;
                 font-size: 1.5rem;

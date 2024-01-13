@@ -30,7 +30,7 @@ const ModalOpenPrincipios = ({
             onClick={handleClose}
             className="closeModal"
           />
-          <img src={principioSelected.img} className="imgCardPrincipio" />
+          <img src={principioSelected.img} alt={`Imagen de ${principioSelected.title}`} className="imgCardPrincipio" />
           <div className="containerDescripcionPrincipio">
             <p className="descripcionPrincipio">
               {principioSelected.description}

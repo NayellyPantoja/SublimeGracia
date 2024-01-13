@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import Swal from "sweetalert2";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 
 const style = {
@@ -46,15 +45,16 @@ const ModalItemConfesion = ({
 
   const handleChange = (e) => {
     if (edit) {
-      setConfesionEditada((prevConfesionEditada) => ({
-        ...prevConfesionEditada,
-        description: e.target.value.length <= 300 ? e.target.value : Swal.fire({
-          icon: 'warning',
-          title: '¡Atención!',
-          text: 'Has excedido la cantidad máxima de 300 caracteres.',
-        }),
-        [e.target.name]: e.target.value,  
-      }));
+      setConfesionEditada(() => ({
+        ...confesionSelected,
+        title: e.target.name === "title" ? e.target.value : confesionSelected.title,
+      description:
+        e.target.name === "description"
+          ? e.target.value.length <= 300
+            ? e.target.value
+            : confesionSelected.description
+          : confesionSelected.description,
+    }));
     } else if (add) {
       setNewConfesion((prevNewConfesion) => ({
         ...prevNewConfesion,
@@ -93,7 +93,7 @@ const ModalItemConfesion = ({
     e.preventDefault();
 
     if (edit) {
-      if (confesionSelected.img) {
+      if (confesionSelected.img != confesionEditada.img) {
         const storage = getStorage();
         const storageRef = ref(storage, confesionSelected.img);
         await deleteObject(storageRef);

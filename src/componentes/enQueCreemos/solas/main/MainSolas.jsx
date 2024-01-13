@@ -18,7 +18,7 @@ const MainSolas = ({background, loading, mainText, user, setIschange}) => {
   return (
     <div className="containerBienvenida">
         <div className="containerImgBgHome solas">
-          <img className="backgroundHome" src={background} alt="" />
+          <img className="backgroundHome" src={background} alt="Creyentes de la iglesia Sublime Gracia" />
         </div>
         <div className="containerTextoBienvenida solas">
           <h1 className="textoBienvenida solas">
