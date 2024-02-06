@@ -75,7 +75,9 @@
             @include m.desktop{
                 max-width: 65%;
             }
-            
+            &.sermones{
+                top: 60%;
+            }
         }
         
         .tituloBienvenida{
@@ -119,6 +121,7 @@
                         cursor: pointer;
                     }
                 }
+                
             }
         }
     }

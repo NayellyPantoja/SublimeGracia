@@ -69,7 +69,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        background-color: v.$secundario;
+        background-color: rgba(v.$secundario, 0.6);
         border-radius: 1rem;
         padding: 2rem;
         margin-bottom: -4rem;
@@ -91,7 +91,7 @@
           flex-direction: column;
           align-items: center;
             margin-bottom: 1rem; 
-            color: v.$verdeOscuro;
+            color: v.$blanco;
             font-size: 1.5rem;
             letter-spacing: .1rem;
             line-height: 1.8rem;

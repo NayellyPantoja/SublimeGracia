@@ -39,7 +39,7 @@ export const logout = () =>{
     }
 }
 
-// logout other user
+// logout change role
 
 export const logoutOtherUser = async (userId, setUser) => {
     try {

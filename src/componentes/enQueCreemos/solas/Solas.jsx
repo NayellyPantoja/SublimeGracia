@@ -14,13 +14,14 @@ import ModalEditSola from "../../modal/ModalEditSola";
 const Solas = () => {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [solas, setSolas] = useState([]);
   const [mainText, setMainText] = useState("");
   const [loading, setLoading] = useState(true);
   const [isChange, setIschange] = useState(false);
   const [solaSelected, setSolaSelected] = useState(null);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     setIschange(false);

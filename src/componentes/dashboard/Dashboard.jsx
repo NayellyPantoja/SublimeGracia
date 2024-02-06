@@ -107,7 +107,6 @@ const Dashboard = () => {
                      {user.rol === "aB3xY7zK" ? (
                       <>
                         <option value="admin">Admin</option>
-                        <option value="user">User</option>
                       </>
                     ) : (
                       <>

@@ -20,79 +20,89 @@ const ItemConfesion = () => {
   const [edit, setEdit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [add, setAdd] = useState(false);
-  const handleOpen = (item) => {
-    setConfesionSelected(item), setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false), add && setAdd(!add), edit && setEdit(!edit);
-  };
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
   const [itemConfesion, setItemConfesion] = useState([]);
   const [confesionSelected, setConfesionSelected] = useState({});
   const [loading, setLoading] = useState(true);
   const [isChange, setIsChange] = useState(false);
 
+  const fetchData = async () => {
+    try {
+      const confesionCollection = collection(db, "itemConfesion");
+      const resConfesion = await getDocs(confesionCollection);
+      const newRes = resConfesion.docs.map((confesion) => ({
+        ...confesion.data(),
+        id: confesion.id,
+      }));
+      setItemConfesion(newRes);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     setIsChange(false);
-    const dataFetch = async () => {
-      try {
-        let confesionCollection = collection(db, "itemConfesion");
-        const resConfesion = await getDocs(confesionCollection);
-        const newRes = resConfesion.docs.map((confesion) => {
-          return { ...confesion.data(), id: confesion.id };
-        });
-        setItemConfesion(newRes);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    dataFetch();
+    fetchData();
   }, [isChange]);
+
+  const handleOpen = (item) => {
+    setConfesionSelected(item);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setAdd(false);
+    setEdit(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const editConfesion = (item) => {
     handleOpen(item);
     setEdit(!edit);
-    console.log("itemConfesion: ", itemConfesion);
-    console.log("open: ", open);
   };
+
   const addConfesion = () => {
     handleOpen({});
     setAdd(!add);
   };
+
   const deleteConfesion = async (item) => {
     try {
       const shouldDelete = await Swal.fire({
-        title: '¿Estás seguro?',
+        title: "¿Estás seguro?",
         text: `¡Eliminarás ${item.title}!`,
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#7CAC41',
-        cancelButtonColor: '#04441C',
-        confirmButtonText: 'Sí, eliminarlo',
-        cancelButtonText: 'Cancelar',
+        confirmButtonColor: "#7CAC41",
+        cancelButtonColor: "#04441C",
+        confirmButtonText: "Sí, eliminarlo",
+        cancelButtonText: "Cancelar",
       });
-      
+
       if (shouldDelete.isConfirmed) {
-      if (item.img) {
-        const storage = getStorage();
-        const storageRef = ref(storage, item.img);
-        await deleteObject(storageRef);
+        if (item.img) {
+          const storage = getStorage();
+          const storageRef = ref(storage, item.img);
+          await deleteObject(storageRef);
+        }
+        await deleteDoc(doc(db, "itemConfesion", item.id));
+        setIsChange(true);
+        Swal.fire({
+          title: "Eliminado",
+          text: `${item.title} ha sido eliminado`,
+          icon: "success",
+          confirmButtonColor: "#7CAC41",
+        });
       }
-      await deleteDoc(doc(db, "itemConfesion", item.id));
-      setIsChange(true);
-      Swal.fire({
-        title: 'Eliminado',
-        text: `${item.title} ha sido eliminado`,
-        icon: 'success',
-        confirmButtonColor: '#7CAC41'});
-    }
     } catch (error) {
       console.error("Error al eliminar la confesión:", error);
     }
   };
+
   return (
     <div className="containerItemConfesion">
       {loading ? (

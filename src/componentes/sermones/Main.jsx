@@ -2,13 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import background from "../../assets/Imagenes/Backgrounds/sermones.jpg";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FadeLoader } from "react-spinners";
-import Slider from "react-slick";
 
 const Main = () => {
-  const [isChange, setIsChange] = useState(false);
   const [loading, setLoading] = useState(false);
   const [predicas, setPredicas] = useState([]);
   const [series, setSeries] = useState([]);
@@ -18,67 +17,48 @@ const Main = () => {
   const containerVideoFrameRef = useRef(null);
 
   useEffect(() => {
-    setIsChange(false);
-    const dataFetch = async () => {
+    const fetchData = async () => {
       try {
-        let predicasCollection = collection(db, "predicas");
+        const predicasCollection = collection(db, "predicas");
         const resPredicas = await getDocs(predicasCollection);
-        const newRes = resPredicas.docs.map((predica) => {
-          return { ...predica.data(), id: predica.id };
-        });
+        const newRes = resPredicas.docs.map((predica) => ({
+          ...predica.data(),
+          id: predica.id,
+        }));
         setPredicas(newRes);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
-    dataFetch();
-  }, [isChange]);
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const organizarPredicas = () => {
-      const agrupadas = predicas.reduce((acc, predica) => {
-        const { serie } = predica;
-        const key = serie || "Predicas";
-
-        if (!acc[key]) {
-          acc[key] = [];
-        }
-
-        acc[key].push({
-          ...predica,
-          titulo: predica.titulo,
-          urlEmbed: predica.url,
-          id: predica.id,
-        });
-
+    const organizePredicas = () => {
+      const groupedPredicas = predicas.reduce((acc, predica) => {
+        const key = predica.serie || "Predicas";
+        acc[key] = [...(acc[key] || []), { ...predica, titulo: predica.titulo, urlEmbed: predica.url, id: predica.id }];
         return acc;
       }, {});
 
-      const seriesArray = Object.keys(agrupadas).map((serie) => ({
-        serie,
-        predicas: agrupadas[serie],
-        scrollLeft: 0,
-        isDragging: false,
-      }));
-
-      seriesArray.sort((a, b) => a.serie.localeCompare(b.serie));
+      const seriesArray = Object.entries(groupedPredicas)
+        .map(([serie, predicas]) => ({ serie, predicas, scrollLeft: 0, isDragging: false }))
+        .sort((a, b) => a.serie.localeCompare(b.serie));
 
       setSeries(seriesArray);
     };
 
-    organizarPredicas();
+    organizePredicas();
   }, [predicas]);
 
   useEffect(() => {
-    setLoading(true);
-
-      if (predicas.length > 0) {
-        const randomIndex = Math.floor(Math.random() * predicas.length);
-        setPredicaAleatoria(predicas[randomIndex]);
-        setLoading(false);
-      }
-      
+    if (predicas.length > 0) {
+      const randomIndex = Math.floor(Math.random() * predicas.length);
+      setPredicaAleatoria(predicas[randomIndex]);
+      setLoading(false);
+    }
   }, [predicas]);
 
   const handleVideoClick = (predica) => {
@@ -91,7 +71,7 @@ const Main = () => {
     });
   };
 
-  var settings = {
+  const sliderSettings = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -128,6 +108,11 @@ const Main = () => {
     <div className="containerBienvenida sermones">
       <div className="containerImgBgHome sermones">
         <img className="backgroundHome" src={background} alt="" />
+        <div className="containerTextoBienvenida solas sermones">
+          <h1 className="textoBienvenida solas">
+            Te invitamos a sumergirte en una experiencia llena de enseñanzas bíblicas. Estamos emocionados de compartir contigo la Palabra de Dios
+          </h1>
+        </div>
       </div>
       <section className="mainVideo" ref={containerVideoFrameRef}>
         {isPredicaSelected ? (
@@ -165,19 +150,19 @@ const Main = () => {
           <div key={serieItem.serie} className="containerSerie">
             <h2>{serieItem.serie}</h2>
             <div className="serie">
-            <Slider {...settings}>
-              {serieItem.predicas.map((predica, predicaIndex) => (
-                <div
-                  key={predicaIndex}
-                  onClick={() => handleVideoClick(predica)}
-                  className="carrusel"
-                >
-                  <img src={predica.img} alt="Preview" />
-                  <p>
-                    {predica.titulo} | {predica.cita} | {predica.predicador}
-                  </p>
-                </div>
-              ))}
+              <Slider {...sliderSettings}>
+                {serieItem.predicas.map((predica, predicaIndex) => (
+                  <div
+                    key={predicaIndex}
+                    onClick={() => handleVideoClick(predica)}
+                    className="carrusel"
+                  >
+                    <img className="imgVideo" src={predica.img} alt="Preview" />
+                    <p>
+                      {`${predica.titulo} | ${predica.cita} | ${predica.predicador}`}
+                    </p>
+                  </div>
+                ))}
               </Slider>
             </div>
           </div>

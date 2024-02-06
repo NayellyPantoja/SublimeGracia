@@ -1,28 +1,17 @@
 import { collection, doc, updateDoc } from "firebase/firestore"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { db } from "../../firebaseConfig"
 import { Box, Button, Modal, TextField } from "@mui/material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-
-const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    p: 4,
-    borderRadius: 2,
-  };
+import { AuthContext } from "../../context/AuthContext";
 
 const ModalTextConfesion = ({open, handleClose, textSelected, setIsChange}) => {
+    const { style } = useContext(AuthContext);
     const [textEditado, setTextEditado] = useState({
         title: textSelected.title,
         description: textSelected.description
        })
-        console.log("textSelected", textSelected)
     
       const handleChange = (e) => {
         setTextEditado(() => ({

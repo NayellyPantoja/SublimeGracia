@@ -3,15 +3,35 @@
 
 .containerFooter{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     height: 20rem;
     width: 100%;
     padding: 2rem 2rem;
     background-color: v.$secundario;
-    ;
+    @include m.telefono{
+        justify-content: space-between;
+        flex-direction: row;
+    }
     @include m.tablet{
         padding: 2rem 7rem;
+    }
+
+    .containerInf{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p{
+            color: v.$blanco;
+            font-size: 1.4rem;
+            letter-spacing: -.1.1rem;
+            margin-top: .2rem;
+            text-align: center;
+            @include m.telefono{
+                margin-top: .5rem;
+                text-align: left;
+            }
+        }
     }
 
     .containerLogo{

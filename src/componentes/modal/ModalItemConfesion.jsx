@@ -1,22 +1,11 @@
 import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { db, uploadFile } from "../../firebaseConfig";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { deleteObject, getStorage, ref } from "firebase/storage";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 2,
-};
+import { AuthContext } from "../../context/AuthContext";
 
 const ModalItemConfesion = ({
   open,
@@ -27,6 +16,7 @@ const ModalItemConfesion = ({
   edit,
   itemConfesion,
 }) => {
+  const { style } = useContext(AuthContext);
   const [file, setFile] = useState(null);
   const [imgCargada, setImgCargada] = useState(false);
   const [loading, setLoading] = useState(false);

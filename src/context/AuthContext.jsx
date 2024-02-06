@@ -5,6 +5,17 @@ export const AuthContext = createContext();
 const AuthContextComponent = ({ children }) => {
   const [user, setUser] = useState( JSON.parse(localStorage.getItem("userInfo")) || {});
   const [isLogged, setIsLogged] = useState( JSON.parse(localStorage.getItem("isLogged")) || false);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: 2,
+  };
 
   const handleLogin = (userLogged) => {
     setUser(userLogged);
@@ -25,6 +36,7 @@ const AuthContextComponent = ({ children }) => {
     isLogged,
     handleLogin,
     logoutContext,
+    style,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

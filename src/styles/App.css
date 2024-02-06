@@ -324,7 +324,7 @@ template {
 
 button.slick-arrow.slick-next,
 button.slick-arrow.slick-prev {
-  background: #C4DC94;
+  background: #54a634;
   border-radius: 50%;
   width: 2.3rem;
   height: 2.3rem;
@@ -332,6 +332,9 @@ button.slick-arrow.slick-prev {
 
 .slick-slider .slick-track {
   margin-left: 0;
+}
+.slick-slider .slick-track:hover {
+  cursor: pointer;
 }
 
 html {
@@ -429,11 +432,11 @@ a {
   height: 2.6rem;
 }
 .containerMenu .svg-inline--fa:hover {
-  color: #C4DC94;
+  color: #54a634;
   cursor: pointer;
 }
 .containerMenu.sidebarOpen {
-  background-color: #C4DC94;
+  background-color: #54a634;
   width: 65%;
   height: 50vh;
   position: fixed;
@@ -463,10 +466,10 @@ a {
   display: block;
   height: 0.2rem;
   width: 100%;
-  background-color: #C4DC94;
+  background-color: #54a634;
 }
 .containerMenu .itemMenu:hover, .containerMenu .itemMenu.activeLink, .containerMenu .itemMenu:hover .iconMenu, .containerMenu .itemMenu.activeLink .iconMenu {
-  color: #C4DC94;
+  color: #54a634;
 }
 .containerMenu .itemMenu.sidebarOpen {
   height: 15%;
@@ -504,7 +507,7 @@ a {
   }
 }
 .containerHeader.scrolled {
-  background-color: #C4DC94;
+  background-color: #54a634;
 }
 .containerHeader.scrolled .itemMenu:hover, .containerHeader.scrolled .itemMenu.activeLink, .containerHeader.scrolled .itemMenu:hover .iconMenu, .containerHeader.scrolled .itemMenu.activeLink .iconMenu {
   color: #04441C;
@@ -658,7 +661,7 @@ a {
   padding: 2rem;
   margin-left: 2rem;
   border-radius: 1rem;
-  background-color: rgba(196, 220, 148, 0.8);
+  background-color: rgba(84, 166, 52, 0.8);
 }
 @media (min-width: 480px) {
   .containerBienvenida .containerTextoBienvenida.solas {
@@ -675,6 +678,9 @@ a {
   .containerBienvenida .containerTextoBienvenida.solas {
     max-width: 65%;
   }
+}
+.containerBienvenida .containerTextoBienvenida.solas.sermones {
+  top: 60%;
 }
 .containerBienvenida .containerTextoBienvenida .tituloBienvenida {
   width: 100%;
@@ -828,7 +834,7 @@ a {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #C4DC94;
+  background-color: rgba(84, 166, 52, 0.6);
   border-radius: 1rem;
   padding: 2rem;
   margin-bottom: -4rem;
@@ -851,7 +857,7 @@ a {
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
-  color: #04441C;
+  color: #fff;
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
   line-height: 1.8rem;
@@ -873,7 +879,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #C4DC94;
+  background-color: #54a634;
 }
 
 .cardContainer {
@@ -1016,8 +1022,8 @@ a {
   }
 }
 .sectionSolas .cardSolas {
-  background-color: #C4DC94;
-  color: #04441C;
+  background-color: #54a634;
+  color: #fff;
   position: relative;
   width: 100%;
   border: 1rem solid #fff;
@@ -1041,10 +1047,12 @@ a {
   text-align: center;
   margin-top: 2.8rem;
   padding-bottom: 1rem;
+  color: #fff;
 }
 .sectionSolas .cardSolas .textSolas {
   font-weight: lighter;
   font-size: 1.4rem;
+  color: #fff;
 }
 .sectionSolas .cardSolas .iconContainer {
   width: 2rem;
@@ -1063,11 +1071,11 @@ a {
   cursor: pointer;
 }
 .sectionSolas .cardSolas .iconContainer .botonEdit {
-  color: #04441C;
+  color: #fff;
   height: 2.2rem;
 }
 .sectionSolas .cardSolas .iconContainer .botonEdit:hover {
-  color: #fff;
+  color: #04441C;
   cursor: pointer;
 }
 .sectionSolas .buttonAdd {
@@ -1104,11 +1112,11 @@ a {
   cursor: pointer;
 }
 .formEdit .buttonEdit {
-  background-color: #7CAC41;
+  background-color: #54a634;
   font-size: 1.4rem;
 }
 .formEdit .buttonEdit:hover {
-  background-color: #455d27;
+  background-color: #04441C;
 }
 .formEdit .MuiOutlinedInput-root {
   font-size: 1.4rem;
@@ -1145,7 +1153,7 @@ a {
   right: 0;
   padding-right: 2rem;
   height: 2rem;
-  color: #7CAC41;
+  color: #54a634;
 }
 .editTextPrincipio:hover {
   color: #04441C;
@@ -1328,10 +1336,10 @@ a {
   max-width: 95%;
 }
 .containerConfesion .containerDescriptionConfesion .linkConfesion {
-  background-color: #C4DC94;
+  background-color: #54a634;
   margin-top: 2rem;
   margin-bottom: 4rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 .containerConfesion .containerDescriptionConfesion .linkConfesion a {
   color: #04441C;
@@ -1561,9 +1569,7 @@ a {
   overflow: hidden;
   width: 20rem;
   height: 20rem;
-}
-.containerPastores .boxImage:last-child {
-  margin-bottom: 4rem;
+  margin-top: 1rem;
 }
 @media (min-width: 1024px) {
   .containerPastores .boxImage {
@@ -1662,6 +1668,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 4rem;
 }
 @media (min-width: 480px) {
   .containerItemPastor {
@@ -1673,16 +1680,40 @@ a {
 
 .containerFooter {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   height: 20rem;
   width: 100%;
   padding: 2rem 2rem;
-  background-color: #C4DC94;
+  background-color: #54a634;
+}
+@media (min-width: 480px) {
+  .containerFooter {
+    justify-content: space-between;
+    flex-direction: row;
+  }
 }
 @media (min-width: 768px) {
   .containerFooter {
     padding: 2rem 7rem;
+  }
+}
+.containerFooter .containerInf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerFooter .containerInf p {
+  color: #fff;
+  font-size: 1.4rem;
+  letter-spacing: -0.1 0.1rem;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+@media (min-width: 480px) {
+  .containerFooter .containerInf p {
+    margin-top: 0.5rem;
+    text-align: left;
   }
 }
 .containerFooter .containerLogo {
@@ -1756,7 +1787,7 @@ a {
   font-size: 1.5rem;
   text-align: center;
   line-height: 1.5rem;
-  padding: 2rem 1rem;
+  padding: 1.2rem 1rem;
 }
 .videos .containerSerie h2 {
   font-weight: lighter;
@@ -1782,12 +1813,17 @@ a {
     padding: 2rem 7rem;
   }
 }
+.containerVideoIframe:hover {
+  cursor: pointer;
+}
 .containerVideoIframe .carrusel {
   height: 35vh;
+  border-radius: 0.5rem;
 }
 @media (min-width: 480px) {
   .containerVideoIframe .carrusel {
     height: 40vh;
+    border-radius: 1rem;
   }
 }
 @media (min-width: 768px) {
@@ -1806,6 +1842,10 @@ a {
   padding: 2rem;
   justify-content: center;
   align-items: center;
+}
+
+.imgVideo {
+  border-radius: 0.5rem;
 }
 
 .containerTable {

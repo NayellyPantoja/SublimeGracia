@@ -20,42 +20,51 @@ const IndividualPastor = () => {
   const [edit, setEdit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [add, setAdd] = useState(false);
-  const handleOpen = (pastor) => {
-    setPastorSelected(pastor), setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false), add && setAdd(!add), edit && setEdit(!edit);
-  };
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
   const [pastores, setPastores] = useState([]);
   const [pastorSelected, setPastorSelected] = useState({});
   const [loading, setLoading] = useState(true);
   const [isChange, setIsChange] = useState(false);
 
+  const fetchData = async () => {
+    try {
+      const pastorCollection = collection(db, "pastor");
+      const resPastores = await getDocs(pastorCollection);
+      const newPastores = resPastores.docs.map((pastor) => ({
+        ...pastor.data(),
+        id: pastor.id
+      }));
+      setPastores(newPastores);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     setIsChange(false);
-    const dataFetch = async () => {
-      try {
-        let pastorCollection = collection(db, "pastor");
-        const resPastores = await getDocs(pastorCollection);
-        let newRes = resPastores.docs.map((pastor) => {
-          return { ...pastor.data(), id: pastor.id };
-        });
-        setPastores(newRes);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    dataFetch();
+    fetchData();
   }, [isChange]);
 
-  const editPastor = async (pastor) => {
+  const handleOpen = (pastor) => {
+    setPastorSelected(pastor);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setAdd(false);
+    setEdit(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const editPastor = (pastor) => {
     handleOpen(pastor);
     setEdit(!edit);
   };
+
   const addPastor = () => {
     handleOpen({});
     setAdd(!add);
@@ -83,10 +92,11 @@ const IndividualPastor = () => {
         await deleteDoc(doc(db, 'pastor', pastor.id));
         setIsChange(true);
         Swal.fire({
-        title: 'Eliminado',
-        text: `El pastor ${pastor.nombre} ${pastor.apellido} ha sido eliminado`,
-        icon: 'success',
-        confirmButtonColor: '#7CAC41'});
+          title: 'Eliminado',
+          text: `El pastor ${pastor.nombre} ${pastor.apellido} ha sido eliminado`,
+          icon: 'success',
+          confirmButtonColor: '#7CAC41'
+        });
       }
     } catch (error) {
       console.error('Error al eliminar el pastor:', error);
@@ -102,66 +112,66 @@ const IndividualPastor = () => {
         <>
           <h2>Cuerpo pastoral</h2>
           <div className="containerItemPastor">
-          {pastores.map((pastor) => (
-            <div key={pastor.id} className="boxImage">
-              <div className="content">
-                {user?.rol === "aB3xY7zK" && (
-                  <>
-                    <div
-                      className={`containerIcon ${menuOpen ? "menuOpen" : ""}`}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEllipsis}
-                        className="menuIcons pastor"
-                        onClick={toggleMenu}
-                      />
-                      <div className="menuDropdown pastor">
-                        <div
-                          className="menuItem"
-                          onClick={() => {
+            {pastores.map((pastor) => (
+              <div key={pastor.id} className="boxImage">
+                <div className="content">
+                  {user?.rol === "aB3xY7zK" && (
+                    <>
+                      <div
+                        className={`containerIcon ${menuOpen ? "menuOpen" : ""}`}
+                      >
+                        <FontAwesomeIcon
+                          icon={faEllipsis}
+                          className="menuIcons pastor"
+                          onClick={toggleMenu}
+                        />
+                        <div className="menuDropdown pastor">
+                          <div
+                            className="menuItem"
+                            onClick={() => {
+                              editPastor(pastor);
+                              setPastorSelected(pastor);
+                            }}
+                          >
+                            Editar
+                          </div>
+                          <div
+                            className="menuItem"
+                            onClick={() => deletePastor(pastor)}
+                          >
+                            Eliminar
+                          </div>
+                        </div>
+                        <FontAwesomeIcon
+                          onClick={(e) => {
                             editPastor(pastor);
                             setPastorSelected(pastor);
+                            e.stopPropagation;
                           }}
-                        >
-                          Editar
-                        </div>
-                        <div
-                          className="menuItem"
-                          onClick={() => deletePastor(pastor)}
-                        >
-                          Eliminar
-                        </div>
+                          className="botonEdit pastor"
+                          icon={faPenToSquare}
+                        />
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          className="botonDelete pastor"
+                          onClick={() => {
+                            deletePastor(pastor);
+                          }}
+                        />
                       </div>
-                      <FontAwesomeIcon
-                        onClick={(e) => {
-                          editPastor(pastor);
-                          setPastorSelected(pastor);
-                          e.stopPropagation;
-                        }}
-                        className="botonEdit pastor"
-                        icon={faPenToSquare}
-                      />
-                      <FontAwesomeIcon
-                        icon={faTrashCan}
-                        className="botonDelete pastor"
-                        onClick={() => {
-                          deletePastor(pastor);
-                        }}
-                      />
-                    </div>
-                  </>
-                )}
-                <img src={pastor.img} alt={`Foto del pastor`}/>
-                <h2>
-                  {pastor.nombre}
-                  <br />
-                  {pastor.apellido}
-                </h2>
+                    </>
+                  )}
+                  <img src={pastor.img} alt={`Foto del pastor`} />
+                  <h2>
+                    {pastor.nombre}
+                    <br />
+                    {pastor.apellido}
+                  </h2>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
-          
+
           {user?.rol === "aB3xY7zK" && (
             <Button className="buttonAdd pastor" onClick={addPastor}>
               +

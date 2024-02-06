@@ -24,10 +24,10 @@
         }
     }
     .buttonEdit{
-        background-color: v.$primario;
+        background-color: v.$secundario;
         font-size: 1.4rem;
         &:hover{
-            background-color: v.$verdeBiche;
+            background-color: v.$verdeOscuro
             
         }
     }

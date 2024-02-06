@@ -44,16 +44,14 @@
         overflow: hidden;
         width: 20rem;
         height: 20rem;
-        &:last-child{
-            margin-bottom: 4rem;
-        }
+        margin-top: 1rem;
         @include m.desktop{
             width: 30rem;
             height: 30rem;
         }
         &::before{
             content: '';
-            position: absolute; 
+            position: absolute;
             inset: -1rem 6rem;
             background: linear-gradient(315deg, v.$backgroundSection, v.$primario);
             transition: 0.5s;
@@ -144,6 +142,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 4rem;
+    
     @include m.telefono{
         flex-direction: row;
         flex-wrap: wrap;

@@ -14,12 +14,11 @@ const Header = () => {
   const admin = import.meta.env.VITE_ADMIN;
   const [scrolled, setScrolled] = useState(false);
   const [pantalla, setPantalla] = useState(false);
-
   const [sidebar, setSidebar] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      window.scrollY > 10 ? setScrolled(true) : setScrolled(false);
+      setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
@@ -28,22 +27,18 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const manejarAnchoDePantalla = () => {
+    const handleWindowResize = () => {
       const esAnchoMayor = window.innerWidth > 670;
-      if (esAnchoMayor && !pantalla) {
-        setPantalla(true);
-      } else if (!esAnchoMayor && pantalla) {
-        setPantalla(false);
-      }
+      setPantalla(esAnchoMayor);
     };
 
-    manejarAnchoDePantalla();
+    handleWindowResize();
 
-    window.addEventListener("resize", manejarAnchoDePantalla);
+    window.addEventListener("resize", handleWindowResize);
     return () => {
-      window.removeEventListener("resize", manejarAnchoDePantalla);
+      window.removeEventListener("resize", handleWindowResize);
     };
-  }, [pantalla]);
+  }, []);
 
   const handleLogout = () => {
     logoutContext();
@@ -51,28 +46,18 @@ const Header = () => {
   };
 
   return (
-    <div className={`containerHeader ${scrolled || location.pathname === "/dashboard" ? "scrolled" : ""} `}>
+    <div className={`containerHeader ${scrolled || location.pathname === "/dashboard" ? "scrolled" : ""}`}>
       <div className="containerLogo">
         <Link to="/">
-          <img
-            className="logoImagen"
-            src={logoImagen}
-            alt="Logo Sublime Gracia"
-          />
-          <img
-            className="logoLetras"
-            src={logoLetras}
-            alt="Logo Sublime Gracia"
-          />
+          <img className="logoImagen" src={logoImagen} alt="Logo Sublime Gracia" />
+          <img className="logoLetras" src={logoLetras} alt="Logo Sublime Gracia" />
         </Link>
       </div>
 
       <div className={`containerMenu ${sidebar ? "sidebarOpen" : ""}`}>
-        {pantalla || sidebar ? (
+        {(pantalla || sidebar) && (
           <>
-            {sidebar && (
-              <BotonNavbar sidebar={sidebar} setSidebar={setSidebar} />
-            )}
+            {sidebar && <BotonNavbar sidebar={sidebar} setSidebar={setSidebar} />}
             <Navbar
               routes={routes}
               isLogged={isLogged}
@@ -82,9 +67,8 @@ const Header = () => {
               handleLogout={handleLogout}
             />
           </>
-        ) : (
-          <BotonNavbar sidebar={sidebar} setSidebar={setSidebar} />
         )}
+        {!pantalla && <BotonNavbar sidebar={sidebar} setSidebar={setSidebar} />}
       </div>
     </div>
   );
